@@ -1,3 +1,43 @@
 .l-home {
-  background-color: gray;
+  height: 100vh;
+  background: linear-gradient(130deg, #1b72c3, #61a8e9);
+
+  .intro-panel {
+    background: url(../images/intro-bg-mobile.svg) no-repeat -8em top / 130%;
+    text-align: right;
+    position: absolute;
+    height: 40vh;
+    top: 30vh;
+    right: 0;
+    width: 100%;
+    padding: 3em;
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+    }
+
+    &__subtitle {
+      margin-top: 18px;
+      color: #737373;
+      font-size: 16px;
+      font-family: 'Saira', sans-serif;
+
+      .web-designer {
+        font-size: 25px;
+        display: block;
+      }
+    }
+  }
+
+  .intro-brief {
+    color: #fff;
+    font-family: 'Saira', sans-serif;
+    font-size: 16px;
+    text-align: right;
+    position: absolute;
+    top: 75vh;
+    margin: 1em 3em;
+  }
 }
