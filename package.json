@@ -1,0 +1,46 @@
+{
+  "name": "nomadmacaw.com",
+  "version": "1.0.0",
+  "description": "Sources and scripts for the website nomadmacaw.com",
+  "main": "index.js",
+  "repository": "git@github.com:leanseefeld/nomadmacaw.com.git",
+  "author": "Leander Seefeld <leander@nomadmacaw.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "bnr build:dev",
+    "build:prod": "bnr build:prod",
+    "serve": "webpack-dev-server --config webpack.dev.js"
+  },
+  "betterScripts": {
+    "build:dev": "webpack --config webpack.dev.js",
+    "build:prod": {
+      "command": "webpack --config webpack.prod.js",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.4",
+    "better-npm-run": "^0.1.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^1.0.0",
+    "ejs": "^2.6.1",
+    "ejs-html-loader": "^3.1.0",
+    "file-loader": "^2.0.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.4",
+    "node-sass": "^4.9.4",
+    "normalize.css": "^8.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.23.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.4"
+  }
+}
