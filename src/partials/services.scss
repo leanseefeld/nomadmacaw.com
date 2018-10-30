@@ -34,6 +34,10 @@
     width: 116px;
     flex-shrink: 0;
     margin-left: 24px;
+
+    > img {
+      max-width: 100%;
+    }
   }
 
   &:nth-child(2n) {
@@ -56,6 +60,7 @@
     img {
       position: absolute;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: calc(100% - 2em);
     }
 
     :first-child {
@@ -97,23 +102,25 @@
     justify-content: center;
 
     > li {
+      $height: 2em;
       list-style: none;
       background-color: #f7f7f7;
       border-radius: 2px;
       margin: 16px 8px 0;
-      height: 28px;
+      height: $height;
       display: flex;
       align-items: center;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
       > img {
-        max-height: 2em;
-        max-width: 2em;
+        $size: 1.5em;
+        max-height: $size;
+        max-width: $size;
+        margin: $height - $size;
       }
 
       > span {
-        margin: auto 12px;
-        display: inline-block;
+        margin: auto 1em auto .5em;
         font-family: "Saira", sans-serif;
       }
     }
