@@ -5,7 +5,6 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    hotOnly: false,
     contentBase: './dist'
   },
   output: {

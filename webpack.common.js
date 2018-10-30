@@ -16,6 +16,7 @@ module.exports = {
   },
   module: {
     rules: [
+      { test: /.(png|jpeg|svg)/, exclude: /node_modules/, loader: 'file-loader' },
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
       {
         test: /\.(scss|sass)$/,
@@ -38,8 +39,7 @@ module.exports = {
             }
           }
         ]
-      },
-      { test: /.(png|jpeg|svg)/, exclude: /node_modules/, loader: 'file-loader' }
+      }
     ]
   },
   plugins: [
