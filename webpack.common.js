@@ -6,7 +6,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
   entry: [
-    './src/index.ejs',
     './src/styles/main.scss',
     './src/index.js'
   ],
@@ -31,12 +30,10 @@ module.exports = {
         test: /\.ejs/,
         exclude: /node_modules/,
         use: [
-          'html-loader',
+          'html-loader?interpolate=true',
           {
             loader: 'ejs-html-loader',
-            options: {
-              data
-            }
+            options: data
           }
         ]
       }

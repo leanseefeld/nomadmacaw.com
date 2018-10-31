@@ -1,4 +1,7 @@
-<header class="nm-header" aria-label="Menu">
-  <img class="nm-header__logo" src="./images/logos/nomadmacaw.svg" alt="Logo">
-  <img class="nm-header__menu" src="./images/hamburger.svg" alt="Expand">
+<header id="header" class="nm-header" aria-label="Menu">
+  <div class="nm-header__logo">${require(`!svg-inline-loader?removingTagAttrs=style!./images/logos/nomadmacaw.svg`)}</div>
+  <div class="nm-header__title-list">
+    <div class="nm-header__title nm-header__title--active" data-section-id="home">&nbsp;</div>
+  </div>
+  <div class="nm-header__menu">${require(`!svg-inline-loader?removingTagAttrs=style!./images/hamburger.svg`)}</div>
 </header>

@@ -1,1 +1,3 @@
-console.log(`Hello!`)
+import Header from './partials/header'
+
+new Header().register()
