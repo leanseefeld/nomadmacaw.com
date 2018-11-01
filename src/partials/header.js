@@ -1,5 +1,4 @@
 import $ from 'jquery'
-import debounce from 'lodash/debounce'
 
 export const className = 'nm-header'
 
@@ -11,11 +10,16 @@ export function getTitleList () {
   return getHeader().find(`.${className}__title-list`)
 }
 
+export function getHamburger () {
+  return getHeader().find(`.${className}__menu`)
+}
+
 export function selectSection (elements) {
   return elements.find(el => el.tagName === 'SECTION')
 }
 
 const activeTitleClass = className + '__title--active'
+const openClass = className + '--open'
 
 export default class Header {
   constructor () {
@@ -23,8 +27,6 @@ export default class Header {
       prevX: 0,
       prevY: 0
     }
-    this.$syncSection = debounce(this.scrollToSection.bind(this), 100)
-    this.$syncHeader = debounce(this.syncHeader.bind(this), 100)
   }
 
   mount () {
@@ -34,7 +36,8 @@ export default class Header {
       const titleEl = document.createElement('div')
       titleEl.classList = className + '__title'
       titleEl.innerText = el.innerText
-      titleEl.dataset.sectionId = el.parentElement.id
+      const sectionId = titleEl.dataset.sectionId = el.parentElement.id
+      titleEl.onclick = () => this.scrollToSection(sectionId)
       elements.push(titleEl)
     }).detach()
 
@@ -45,10 +48,33 @@ export default class Header {
     const handler = this.onScroll.bind(this)
     window.addEventListener('scroll', handler)
     this.mount()
-    this.update(window.innerHeight, window.scrollY)
-    this.syncHeader()
+    getHamburger().click(this.toggleMenu.bind(this))
+    const header = getHeader()[0]
+    header.addEventListener('transitionend', (evt) => {
+      if (evt.target === header && evt.propertyName === 'height') {
+        this.onScroll(true)
+      }
+    })
+    getHeader().find(`.${className}__logo`).click(this.scrollToSection.bind(this, 'home'))
+    this.onScroll()
+
     return function unregister () {
       window.removeEventListener('scroll', handler)
+    }
+  }
+
+  isOpen () {
+    return getHeader().is('.' + openClass)
+  }
+
+  toggleMenu (open) {
+    if ((typeof open !== 'undefined' && !open) || this.isOpen()) {
+      getHeader().removeClass(openClass)
+      this.onScroll()
+    } else {
+      this.opaque()
+      this.collapse()
+      getHeader().addClass(openClass)
     }
   }
 
@@ -75,38 +101,37 @@ export default class Header {
     }
   }
 
-  onScroll (evt) {
+  onScroll (evt, force) {
+    if (this.isOpen()) {
+      return
+    }
+    if (typeof evt === 'boolean' && typeof force === 'undefined') {
+      force = evt
+    }
     this.update(window.innerHeight, window.scrollY)
-    // this.$syncSection()
-    this.$syncHeader()
+    this.syncHeader(force)
   }
 
-  syncHeader () {
+  syncHeader (force) {
     const titleList = getTitleList()
     const visibleTitle = titleList.find('.' + activeTitleClass)
     const middleSection = selectSection(document.elementsFromPoint(1, window.innerHeight / 2 + 1))
 
-    if (middleSection.id !== visibleTitle.data('sectionId')) {
+    if (force || middleSection.id !== visibleTitle.data('sectionId')) {
       const listTop = titleList[0].getBoundingClientRect().top
       const target = titleList.find(`[data-section-id=${middleSection.id}]`)
-      const targetTop = target[0].getBoundingClientRect().top
+      const targetMiddle = target[0].getBoundingClientRect().top - target[0].getBoundingClientRect().height / 3
       visibleTitle.removeClass(activeTitleClass)
       target.addClass(activeTitleClass)
-      titleList.animate({ scrollTop: titleList[0].scrollTop + (targetTop - listTop) }, 200)
+      titleList.animate({ scrollTop: titleList[0].scrollTop + (targetMiddle - listTop) }, 200)
     }
   }
 
-  scrollToSection () {
-    const scroll = this.scroll
-    const topSection = selectSection(document.elementsFromPoint(10, 10))
-    const bottomSection = selectSection(document.elementsFromPoint(10, window.innerHeight - 10))
-    if (topSection !== bottomSection) {
-      const anchor = scroll.prevY < window.scrollY ? bottomSection : topSection
-      $('html,body').animate({
-        scrollTop: anchor.offsetTop
-      }, 200)
-    }
-    scroll.prevX = window.scrollX
-    scroll.prevY = window.scrollY
+  scrollToSection (sectionId) {
+    this.toggleMenu(false)
+    const anchor = document.getElementById(sectionId)
+    $('html,body').animate({
+      scrollTop: anchor.offsetTop
+    }, 200)
   }
 }

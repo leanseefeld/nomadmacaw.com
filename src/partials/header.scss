@@ -2,17 +2,27 @@
   $top: &;
   $transition: ease-in-out 0.3s;
   width: 100%;
+  height: 3em;
   position: fixed;
   z-index: 10;
   padding: 32px;
   box-sizing: border-box;
   transition: $transition;
-  transition-property: padding, background-color;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  transition-property: padding, background-position, height, border-color;
+  background-image: linear-gradient(
+    35deg,
+    #e5e5e5,
+    #fff 50%,
+    #fff 70%,
+    rgba(0, 0, 0, 0) 80%
+  );
+  background-position-y: 0;
+  background-size: 100vw 200vh;
+  border-bottom: 1px solid transparent;
 
   &__logo {
+    position: absolute;
+    top: 1em;
     height: 1.2em;
     width: 5em;
     overflow: hidden;
@@ -39,16 +49,18 @@
   &__title-list {
     font-family: "Saira", sans-serif;
     font-size: 1.5em;
-    height: 1em;
+    height: 2em;
     text-align: center;
     overflow: hidden;
     opacity: 0;
-    transition: opacity $transition;
+    transition: $transition;
+    transition-property: opacity, transform;
   }
 
   &__title {
-    opacity: 0;
-    transition: opacity $transition;
+    opacity: 0.6;
+    transition: opacity ease-out 0.2s;
+    margin-bottom: 1em;
 
     &--active {
       opacity: 1;
@@ -57,7 +69,13 @@
 
   &__menu {
     width: 24px;
-    height: 14px;
+    height: 16px;
+    position: absolute;
+    top: 3em;
+    right: 3em;
+    transition: ease-in-out 0.2s;
+    transition-property: transform, top;
+    transform-origin: top right;
 
     #hamburger {
       > path {
@@ -66,11 +84,26 @@
         stroke-width: 0.48px;
         transition: stroke $transition;
       }
+
+      #top {
+        transition: transform ease-in-out 0.2s;
+        transform-origin: right;
+      }
+
+      #middle {
+        transition: transform ease-in-out 0.2s;
+        transform-origin: 0.35em center;
+      }
+
+      #bottom {
+        transition: transform ease-in-out 0.2s;
+        transform-origin: center right;
+      }
     }
   }
 
   &--collapsed {
-    padding: 14px 32px;
+    padding: 0 32px;
 
     #{$top} {
       &__logo {
@@ -81,12 +114,16 @@
           opacity: 0;
         }
       }
+
+      &__menu {
+        top: 1em;
+      }
     }
   }
 
   &--opaque {
-    background-color: white;
-    border-bottom: 1px solid #d9d9d9;
+    background-position-y: -80vh;
+    border-color: #d9d9d9;
 
     #{$top} {
       &__logo {
@@ -105,6 +142,43 @@
         #hamburger > path {
           stroke: #999999;
         }
+      }
+    }
+  }
+
+  &--open {
+    height: 100vh;
+    background-position-y: -100vh;
+
+    #{$top} {
+      &__logo {
+        transform: scale(2) translate(4.7em, 4em);
+      }
+
+      &__menu {
+        transform: scale(3) translateY(1em);
+
+        #top {
+          transform: rotateZ(-45deg) translate(0.075em) scale(0.9);
+        }
+
+        #middle {
+          transform: scale(0) translate(-0.7em);
+        }
+
+        #bottom {
+          transform: rotateZ(45deg) translate(0.07em, 0.013em) scale(0.9);
+        }
+      }
+
+      &__title-list {
+        height: 100vh;
+        transform: translateY(30vh);
+      }
+
+      &__title--active {
+        opacity: 1;
+        font-size: 1.2em;
       }
     }
   }
