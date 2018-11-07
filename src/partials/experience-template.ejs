@@ -1,0 +1,37 @@
+<% experiences.forEach(function(experience) { %>
+  <% var company = experience.company %>
+  <div class="c-experience">
+    <div class="c-experience__header">
+      <div class="c-experience__logo">
+        <img src="<%- company.logo %>" alt="<%= company.name%>">
+      </div>
+      <div class="c-experience__title">
+        <h2 class="c-experience__job-title"><%= experience.title %></h2>
+        <h2 class="c-experience__company-name"><%= company.name %></h2>
+        <div class="c-experience__date"><%= experience.start %> - <%= experience.end %></div>
+        <div class="c-experience__company-location"><%= company.location %></div>
+      </div>
+    </div>
+    <div class="c-experience__summary">
+      <% experience.summary.split('\n').forEach(function (paragraph) { %>
+        <p><%= paragraph %></p>
+      <% }) %>
+      <div class="c-experience__summary__toggle">... <span class="c-experience__summary__toggle-text">see more</span></div>
+    </div>
+    <% if (experience.projects) { %>
+      <h5 class="c-experience__label">Projects</h5>
+      <div class="c-experience__projects">
+        <% experience.projects.forEach(function (project) { %>
+          <div class="c-experience__project">
+            <% if (project.link) { %><a href="<%- project.link %>" target="_blank"><% } %>
+            <div class="c-experience__project__image">
+              <img src="<%- project.thumbnail %>" alt="<%= project.name %>">
+            </div>
+            <p><%= project.name %></p>
+            <% if (project.link) { %></a><% } %>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+<% }) %>

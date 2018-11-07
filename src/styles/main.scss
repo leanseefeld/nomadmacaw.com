@@ -16,3 +16,69 @@ body {
 section {
   min-height: 100vh;
 }
+
+.c-loading-icon {
+  $size: 4em;
+  position: relative;
+  display: block;
+  width: $size;
+  height: $size;
+  margin: auto;
+
+  &__label {
+    font-family: 'Saira', sans-serif;
+    margin-top: 1em;
+    display: inline-block;
+  }
+
+  &__tile {
+    $t: 1000ms;
+    $border-radius: .2em;
+    display: inline-block;
+    height: $size / 2;
+    width: $size / 2;
+    background-color: #ddd;
+    opacity: 0.5;
+    animation: tile $t ease-in-out 0s alternate infinite;
+
+    &:nth-child(1) { 
+      float: left;
+      transform-origin: 75% 75%;
+      border-radius: $border-radius 0 0;
+     }
+    &:nth-child(2) { 
+      float: right;
+      transform-origin: 25% 75%;
+      animation-delay: -1.5 * $t;
+      border-radius: 0 $border-radius 0 0;
+     }
+    &:nth-child(4) { 
+      float: right;
+      transform-origin: 25% 25%;
+      animation-delay: -1 * $t;
+      border-radius: 0 0 $border-radius 0;
+     }
+    &:nth-child(3) { 
+      float: left;
+      transform-origin: 75% 25%;
+      animation-delay: -0.5 * $t;
+      border-radius: 0 0 0 $border-radius;
+    }
+  }
+
+}
+
+@keyframes tile {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;;
+  }
+  25% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

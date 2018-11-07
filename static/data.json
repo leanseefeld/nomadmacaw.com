@@ -1,0 +1,37 @@
+{
+  "about": "Hey! I am Leander yada yada yada",
+  "experiences": [{
+    "company": {
+      "name": "Stuff",
+      "location": "Auckland, New Zealand",
+      "logo": "stuff-logo.png"
+    },
+    "start": "Sep 2017",
+    "end": "Aug 2018",
+    "title": "Fullstack Engineer",
+    "summary": "Assigned to the Commerce department, I help in maintaining and evolving products such as indexed.co.nz and popshop.stuff.co.nz, as well as bootstrapping or rewriting websites for partnerships such as donehealthcovered.co.nz and energyclubnz.com.\nReactJS is heavily used on the frontend while the backend is written in NodeJS with ExpressJS and GraphQL. For maintaining our internal commerce APIs however, I use Ruby on Rails and EmberJS.\nMy responsibilities range from architectural decisions during conception phase to deployment and maintenance with proper CI/CD.\nI pride myself in having upskilled in React, the AWS environment and other tools required for the success of the product in relatively short time frames. This adaptability, I believe, is key to creating great projects and maintaining a good relationship with my peers in an environment that is constantly evolving.",
+    "projects": [{
+      "name": "Indexed",
+      "link": "https://indexed.co.nz",
+      "thumbnail": "projects/indexed.jpg"
+    }, {
+      "name": "PopShop",
+      "link": "https://popshop.stuff.co.nz",
+      "thumbnail": "projects/popshop.jpg"
+    }, {
+      "name": "done: health covered",
+      "link": "https://donehealthcovered.co.nz",
+      "thumbnail": "projects/donehealth.jpg"
+    }],
+    "skills": ["JavaScript", "Node.js", "Webpack", "Sass", "PostgreSQL", "Ruby", "Ruby on Rails", "Amazon Web Services"]
+  }],
+  "testimonials": [{
+    "author": "John Doe",
+    "relationship": "Co-worker at Stuff",
+    "message": "Leander is cool. He makes websites. Hire him."
+  }],
+  "contact": {
+    "phone": "(+64) 27 510 3703",
+    "email": "leander@nomadmacaw.com"
+  }
+}

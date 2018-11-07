@@ -1,5 +1,5 @@
 const path = require('path')
-const data = require('./data')
+const data = require('./static/data')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
@@ -25,24 +25,18 @@ module.exports = {
           'css-loader',
           'sass-loader'
         ]
-      },
-      {
+      }, {
         test: /\.ejs/,
         exclude: /node_modules/,
-        use: [
-          'html-loader?interpolate=true',
-          {
-            loader: 'ejs-html-loader',
-            options: data
-          }
-        ]
+        loader: 'ejs-compiled-loader'
       }
     ]
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      template: './src/index.ejs'
+      template: '!!html-loader?interpolate=true!ejs-html-loader!./src/index.ejs',
+      templateOptions: data
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
