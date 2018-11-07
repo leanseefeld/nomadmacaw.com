@@ -8,15 +8,19 @@ export function findLastElementBeforeY (parent, y, elements) {
   let q = elements.length - 1
   let i = 0
 
-  while (p !== q) {
+  // binary search on array with repeated items
+  while (p < q - 1) {
     i = Math.floor((p + q) / 2)
-    if (elements[i].offsetTop < y) {
-      p = i + 1
+    const currentOffsetTop = elements[i].offsetTop
+    if (currentOffsetTop < y) {
+      p = i
+      while (p < q && elements[p + 1].offsetTop === currentOffsetTop) p++
     } else {
-      q = i - 1
+      q = i
+      while (p < q && elements[q - 1].offsetTop === currentOffsetTop) q--
     }
   }
-  return elements[i]
+  return elements[p]
 }
 
 function configToggleHandler (toggle, fullContent, collapsedContent) {
@@ -43,12 +47,12 @@ function configToggleHandler (toggle, fullContent, collapsedContent) {
 export function collapseSummary (container) {
   const elements = container.querySelectorAll('.c-experience__summary')
   for (let summary of elements) {
-    const heightPercentage = summary.offsetHeight * 100 / window.innerHeight
-    if (heightPercentage > 20) {
-      const toggle = summary.querySelector('.c-experience__summary__toggle')
-      const toggleWidth = toggle.offsetWidth
-      toggle.remove()
+    const toggle = summary.querySelector('.c-experience__summary__toggle')
+    const toggleWidth = toggle.offsetWidth
+    toggle.remove()
 
+    const heightPercentage = Math.floor(summary.offsetHeight * 100 / window.innerHeight)
+    if (heightPercentage > 20) {
       const originalHtml = summary.innerHTML
 
       for (let p of summary.querySelectorAll('p')) {
