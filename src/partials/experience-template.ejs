@@ -1,6 +1,6 @@
 <% experiences.forEach(function(experience) { %>
   <% var company = experience.company %>
-  <div class="c-experience">
+  <article class="c-experience">
     <div class="c-experience__header">
       <div class="c-experience__logo">
         <img src="<%- company.logo %>" alt="<%= company.name%>">
@@ -33,5 +33,5 @@
         <% }) %>
       </div>
     <% } %>
-  </div>
+  </article>
 <% }) %>

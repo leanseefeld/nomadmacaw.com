@@ -1,4 +1,5 @@
 import experienceTemplate from './experience-template.ejs'
+import $ from 'jquery'
 
 export function findLastElementBeforeY (parent, y, elements) {
   if (y >= parent.offsetHeight) {
@@ -85,9 +86,73 @@ export function collapseSummary (container) {
   }
 }
 
+export function getExperienceFromPoints (x, y) {
+  let targetElements = document.elementsFromPoint(x, y)
+  let target
+  do {
+    target = targetElements.shift()
+  } while (targetElements.length && !target.classList.contains('c-experience'))
+  return target
+}
+
 export default class ExperienceController {
+  constructor () {
+    this._scrollInfo = {}
+  }
+
   removeLoader () {
     document.querySelector('#experience .c-loading-icon').remove()
+  }
+
+  configureScroll (wrapper) {
+    wrapper.addEventListener('touchstart', (evt) => {
+      if (this._scrollInfo.active) {
+        return
+      }
+      this._scrollInfo = {
+        active: true,
+        startPoint: {
+          x: evt.touches[0].clientX,
+          y: evt.touches[0].clientY
+        },
+        scrollLeft: wrapper.scrollLeft
+      }
+      this._scrollInfo.activeArticle = getExperienceFromPoints(
+        this._scrollInfo.startPoint.x,
+        this._scrollInfo.startPoint.y
+      )
+    })
+
+    wrapper.addEventListener('touchmove', (evt) => {
+      wrapper.scrollLeft = this._scrollInfo.scrollLeft + (this._scrollInfo.startPoint.x - evt.touches[0].clientX)
+      this._scrollInfo.lastPoint = {
+        x: evt.touches[0].clientX,
+        y: evt.touches[0].clientY
+      }
+    })
+
+    const touchEndHandler = (evt) => {
+      if (this._scrollInfo.lastPoint) {
+        const direction = this._scrollInfo.startPoint.x < this._scrollInfo.lastPoint.x ? 'RIGHT' : 'LEFT'
+
+        const minimumOffset = Math.floor(window.innerWidth / 5)
+        const targetX = direction === 'LEFT' ? window.innerWidth - minimumOffset : minimumOffset
+        let target = getExperienceFromPoints(targetX, Math.max(0, wrapper.getBoundingClientRect().y))
+        const activeArticle = this._scrollInfo.activeArticle
+        $(wrapper).animate({
+          scrollLeft: target.offsetLeft
+        }, 200, () => {
+          if (target !== activeArticle) {
+            $('html,body').animate({
+              scrollTop: wrapper.offsetTop - document.getElementById('header').offsetHeight * 2
+            }, 100)
+          }
+        })
+      }
+      this._scrollInfo = {}
+    }
+    wrapper.addEventListener('touchend', touchEndHandler)
+    wrapper.addEventListener('touchcancel', touchEndHandler)
   }
 
   onDataLoaded (data) {
@@ -95,5 +160,6 @@ export default class ExperienceController {
     const wrapper = document.querySelector('#experience .l-experience-wrapper')
     wrapper.innerHTML = experienceTemplate({ experiences: data.experiences })
     collapseSummary(wrapper)
+    this.configureScroll(wrapper)
   }
 }

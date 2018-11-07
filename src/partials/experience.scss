@@ -1,12 +1,14 @@
-.l-experience {
-  padding: 48px 32px;
-}
-
 .l-experience-wrapper {
-  overflow: visible;
+  display: flex;
+  overflow: hidden;
 }
 
 .c-experience {
+  flex-shrink: 0;
+  width: 100%;
+  padding: 0 32px;
+  box-sizing: border-box;
+
   &__header {
     margin-bottom: 1em;
   }
