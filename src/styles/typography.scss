@@ -30,7 +30,8 @@ h5 {
   color: #b2b2b2;
 }
 
-a {
+a,
+.arrow-link {
   text-decoration: underline;
   color: #808080;
   font-size: 0.8em;
@@ -38,20 +39,22 @@ a {
 }
 
 .arrow-link {
-  $icon-margin: 1em;
+  $icon-margin: 0.5em;
   &::after {
-    $size: 1em;
     content: "";
     display: inline-block;
     width: 1em;
-    height: $size;
+    height: 0.5em;
     background: url(../images/arrow.svg) center bottom no-repeat;
   }
 
-  &--expand {
-    &::after {
-      margin-left: $icon-margin;
-    }
+  &--expand::after {
+    margin-left: $icon-margin;
+  }
+  
+  &--collapse::after {
+    margin-left: $icon-margin;
+    transform: rotateZ(180deg);
   }
 }
 

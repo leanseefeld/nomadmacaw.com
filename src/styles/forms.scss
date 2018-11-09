@@ -9,7 +9,6 @@
     $input-width: #{'calc(100% - ' $input-margin-left ')'};
     $border: solid #d9d9d9 1px;
     $border-color--focus: $blue--light;
-    $border-color--active: $blue;
     margin-top: 1em;
 
     > input {
@@ -22,12 +21,9 @@
       outline: none;
       font-size: 0.9em;
 
+      &:active,
       &:focus {
         border-color: $border-color--focus;
-      }
-
-      &:active {
-        border-color: $border-color--active;
       }
     }
 
@@ -50,13 +46,10 @@
           outline: none;
           font-size: 0.9em;
 
+          &:active,
           &:focus {
             border-color: $border-color--focus;
             outline: none;
-          }
-
-          &:active {
-            border-color: $border-color--active;
           }
         }
       }
