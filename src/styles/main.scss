@@ -4,6 +4,7 @@
 @import "./typography.scss";
 @import "../partials/partials";
 @import "./panels.scss";
+@import "./forms.scss";
 
 body {
   font-family: 'Raleway', sans-serif;
@@ -14,6 +15,7 @@ body {
 }
 
 section {
+  box-sizing: border-box;
   min-height: 100vh;
 }
 
@@ -64,7 +66,18 @@ section {
       border-radius: 0 0 0 $border-radius;
     }
   }
+}
 
+.l-footer {
+  padding: 32px;
+}
+
+.copyright {
+  display: block;
+  font-family: 'Saira', sans-serif;
+  font-size: 0.7em;
+  color: #737373;
+  text-align: center;
 }
 
 @keyframes loading-tile {

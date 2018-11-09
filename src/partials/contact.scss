@@ -1,0 +1,44 @@
+%contact-icon {
+  $size: 1.5em;
+  content: '';
+  display: inline-block;
+  height: $size;
+  width: $size;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  margin-right: 1em;
+}
+
+.l-contact {
+  padding: 50px 32px;
+
+  &__list {
+    margin: 28px 0;
+  }
+
+  &__item {
+    list-style: none;
+
+    &--phone::before {
+      @extend %contact-icon;
+      background-image: url('../images/icons/phone-icon.svg');
+    }
+
+    &--mail::before {
+      @extend %contact-icon;
+      background-image: url('../images/icons/mail-icon.svg');
+    }
+  }
+
+  &__form {
+    padding: 1.8em 2em;
+
+    > p {
+      text-align: center;
+      margin: 0;
+      font-size: 0.9em;
+    }
+  }
+}

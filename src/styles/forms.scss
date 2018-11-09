@@ -1,0 +1,102 @@
+.l-form {
+  display: flex;
+  flex-direction: column;
+  $blue: #1b72c3;
+  $blue--light: #61a8e9;
+
+  &__field {
+    $input-margin-left: 0.3em;
+    $input-width: #{'calc(100% - ' $input-margin-left ')'};
+    $border: solid #d9d9d9 1px;
+    $border-color--focus: $blue--light;
+    $border-color--active: $blue;
+    margin-top: 1em;
+
+    > input {
+      border: none;
+      border-bottom: $border;
+      width: $input-width;
+      margin-left: $input-margin-left;
+      padding: 0.2em 0.5em;
+      box-sizing: border-box;
+      outline: none;
+      font-size: 0.9em;
+
+      &:focus {
+        border-color: $border-color--focus;
+      }
+
+      &:active {
+        border-color: $border-color--active;
+      }
+    }
+
+    > label {
+      display: inline-block;
+      font-size: 0.9em;
+      font-family: "Saira";
+      color: #808080;
+      margin-bottom: 0.3em;
+    }
+
+    & {
+      &--text-area {
+        > textarea {
+          border: $border;
+          margin-left: $input-margin-left;
+          width: $input-width;
+          padding: 0.5em 0.7em;
+          box-sizing: border-box;
+          outline: none;
+          font-size: 0.9em;
+
+          &:focus {
+            border-color: $border-color--focus;
+            outline: none;
+          }
+
+          &:active {
+            border-color: $border-color--active;
+          }
+        }
+      }
+    }
+  }
+
+  > button[type="submit"] {
+    align-self: flex-end;
+    border: solid $blue 1px;
+    color: $blue;
+    background: none;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-family: Saira;
+    margin: 1em 1em 0;
+    box-sizing: border-box;
+    padding: 0.4em 1.5em;
+    line-height: 1;
+
+    > svg {
+      display: inline-block;
+      height: 0.7em;
+      width: 1em;
+      margin-left: 0.5em;
+
+      path {
+        fill: none;
+        stroke: $blue;
+      }
+    }
+
+    &:active,
+    &:focus {
+      color: $blue--light;
+      outline: none;
+      border-color: $blue--light;
+
+      > svg path {
+        stroke: $blue--light;
+      }
+    }
+  }
+}

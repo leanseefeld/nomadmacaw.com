@@ -15,7 +15,7 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /.(png|jpe?g|svg)/, exclude: /node_modules/, loader: 'file-loader' },
+      { test: /.(png|jpe?g|svg)$/, exclude: /node_modules/, loader: 'file-loader' },
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
       {
         test: /\.(scss|sass)$/,
@@ -26,17 +26,26 @@ module.exports = {
           'sass-loader'
         ]
       }, {
-        test: /\.ejs/,
+        test: /-template\.ejs$/,
         exclude: /node_modules/,
         loader: 'ejs-compiled-loader'
+      }, {
+        test: /\.ejs$/,
+        exclude: /node_modules|-template\.ejs/,
+        use: [
+          'html-loader?interpolate=true',
+          {
+            loader: 'ejs-html-loader',
+            options: data
+          }
+        ]
       }
     ]
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      template: '!!html-loader?interpolate=true!ejs-html-loader!./src/index.ejs',
-      templateOptions: data
+      template: './src/index.ejs'
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css'

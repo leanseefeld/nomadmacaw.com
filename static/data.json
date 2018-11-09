@@ -66,6 +66,7 @@
   }],
   "contact": {
     "phone": "(+64) 27 510 3703",
-    "email": "leander@nomadmacaw.com"
+    "mail": "leander@nomadmacaw.com",
+    "post": "/todo-mail"
   }
 }
