@@ -78,6 +78,26 @@
   }
 }
 
+.stack-container {
+  $top: &;
+  overflow: hidden;
+  transition: height ease-in-out 200ms;
+  position: relative;
+
+  &__toggle {
+    display: block;
+    margin: 1em auto;
+    background: none;
+    border: none;
+    outline: none;
+
+    &:focus,
+    &:active {
+      color: #333;
+    }
+  }
+}
+
 .c-stack-list {
   > h5 {
     text-align: center;
