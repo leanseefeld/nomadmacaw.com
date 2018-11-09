@@ -1,0 +1,45 @@
+.l-testimonials {
+  padding: 48px 32px;
+}
+
+%testimonial-quote {
+  content: '';
+  display: block;
+  height: 1em;
+  width: 1.3em;
+  background: url(../images/quote.svg);
+  position: absolute;
+}
+
+.c-testimonial {
+  display: inline-block;
+  margin: 2em;
+
+  &__message {
+    $quote-offset-y: -0.5em;
+    $quote-offset-x: -1.6em;
+    margin: 0;
+    text-align: center;
+    position: relative;
+
+    &::before {
+      @extend %testimonial-quote;
+      top: $quote-offset-y;
+      left: $quote-offset-x;
+    }
+    
+    &::after {
+      @extend %testimonial-quote;
+      transform: rotateZ(180deg);
+      bottom: $quote-offset-y;
+      right: $quote-offset-x;
+    }
+  }
+
+  &__reference {
+    font-size: 0.7em;
+    text-align: right;
+    margin-right: 1em;
+    color: #737373;
+  }
+}

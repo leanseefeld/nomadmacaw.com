@@ -56,9 +56,13 @@
     "summary": "Assisted in the migration of a product from Delphi to Java.\nAlso worked maintaining an internal JEE framework, having worked a lot with memory consume optimization.\nDevelopment and maintenance of an internal framework, covering visual layer (web: JavaScript, HTML and CSS), persistence layer, plugin development for the Eclipse platform, JEE, optimizations and test automation for browsers and Eclipse.\nMaintenance and improvement of a middleware for communication of digital fiscal documents between Senior solutions and the Federal and Municipal government.\nDevelopment with C# and ASP."
   }],
   "testimonials": [{
-    "author": "John Doe",
-    "relationship": "Co-worker at Stuff",
-    "message": "Leander is cool. He makes websites. Hire him."
+    "author": "Caique Caleiro",
+    "relationship": "Co-worker at Philips",
+    "message": "Leander is a great professional that is always trying to improve his knowlegde. It's very nice to work with him, because he is able to deal with any problem and has great skills in problem solving.\nHe is keen on new technologies and always try to share his willingness with the team."
+  }, {
+    "author": "Julio Gesser",
+    "relationship": "Software Architect at Senior",
+    "message": "Leander is a very commited and very smart professional. He always gave his best to solve the problems and he is always concerned with the quality and performance of the code.\nLeander learns fast and has a brilliant career ahead."
   }],
   "contact": {
     "phone": "(+64) 27 510 3703",

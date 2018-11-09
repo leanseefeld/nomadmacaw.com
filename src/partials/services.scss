@@ -32,6 +32,7 @@
 
   &__image {
     width: 116px;
+    max-width: 30vw;
     flex-shrink: 0;
     margin-left: 24px;
 
@@ -74,13 +75,6 @@
       right: 0;
       z-index: 0;
     }
-  }
-}
-
-.stack-container {
-  > p {
-    text-align: center;
-    margin: 10px 0;
   }
 }
 

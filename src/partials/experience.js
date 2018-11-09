@@ -1,3 +1,4 @@
+import AbstractLoaderController from './AbstractLoaderController'
 import experienceTemplate from './experience-template.ejs'
 import $ from 'jquery'
 
@@ -95,13 +96,10 @@ export function getExperienceFromPoints (x, y) {
   return target
 }
 
-export default class ExperienceController {
+export default class ExperienceController extends AbstractLoaderController {
   constructor () {
+    super('experience')
     this._scrollInfo = {}
-  }
-
-  removeLoader () {
-    document.querySelector('#experience .c-loading-icon').remove()
   }
 
   configureScroll (wrapper) {
@@ -156,7 +154,7 @@ export default class ExperienceController {
   }
 
   onDataLoaded (data) {
-    this.removeLoader()
+    super.onDataLoaded(data)
     const wrapper = document.querySelector('#experience .l-experience-wrapper')
     wrapper.innerHTML = experienceTemplate({ experiences: data.experiences })
     collapseSummary(wrapper)
