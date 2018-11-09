@@ -21,7 +21,7 @@ export function selectSection (elements) {
 const activeTitleClass = className + '__title--active'
 const openClass = className + '--open'
 
-export default class Header {
+export default class HeaderController {
   constructor () {
     this.scroll = {
       prevX: 0,

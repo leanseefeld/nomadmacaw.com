@@ -1,5 +1,5 @@
 import AbstractLoaderController from './AbstractLoaderController'
-import testimonialTemplate from './testimonial-template.ejs'
+import testimonialTemplate from '../partials/testimonial-template.ejs'
 
 export default class TestinomialsController extends AbstractLoaderController {
   constructor () {

@@ -1,5 +1,5 @@
 import AbstractLoaderController from './AbstractLoaderController'
-import experienceTemplate from './experience-template.ejs'
+import experienceTemplate from '../partials/experience-template.ejs'
 import $ from 'jquery'
 
 export function findLastElementBeforeY (parent, y, elements) {

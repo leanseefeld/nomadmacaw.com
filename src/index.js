@@ -1,9 +1,9 @@
-import Header from './partials/header'
+import HeaderController from './controllers/header'
 import DataLoader from './data-loader'
-import ExperienceController from './partials/experience'
-import TestimonialsController from './partials/testimonials'
+import ExperienceController from './controllers/experience'
+import TestimonialsController from './controllers/testimonials'
 
-new Header().register()
+new HeaderController().register()
 
 const dataLoader = new DataLoader()
 dataLoader.addListener(new ExperienceController())
