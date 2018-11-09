@@ -1,5 +1,13 @@
 {
-  "about": "Hey! I am Leander yada yada yada",
+  "about": [
+    "Hi there, I am Leander. I have been working with web development for over six years, developing intuitive solutions that last long and are easy to extend.",
+    "I believe that focusing on your goals and hearing what you have to say is key to a successful partnership. So is flexibility to go the extra mile. After all, you are unique - just like your projects.",
+    "Born in Brazil and exported to the world, ever since school I have enjoyed resolving problems in creative ways. Exploring new ideas and places keeps me going, as by doing so I always find new inspirations in nature and in people. This is what I try to bring to my work.",
+    "It's with inspiration, passion and technical expertise that I hope to make your digital presence a truly remarkable one.",
+    " ",
+    "Best regards,",
+    "Leander Seefeld"
+  ],
   "experiences": [{
     "company": {
       "name": "Stuff",

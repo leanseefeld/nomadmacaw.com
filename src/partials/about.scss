@@ -28,7 +28,7 @@
   }
 
   h4 {
-    font-family: 'Saira', sans-serif;
+    font-family: "Saira", sans-serif;
     font-weight: normal;
     font-size: 1.5em;
     color: #333333;
@@ -49,9 +49,23 @@
   }
 
   .about-message {
-    text-align: center;
-    padding: 1em;
+    padding: 1em 1.2em;
     box-sizing: border-box;
     margin: 2em 0;
+    text-indent: 1em;
+    font-size: 0.9em;
+
+    .about__expand {
+      display: block;
+      margin: 0 auto;
+      background: none;
+      border: none;
+      outline: none;
+
+      &:active,
+      &:focus {
+        color: #333;
+      }
+    }
   }
 }
