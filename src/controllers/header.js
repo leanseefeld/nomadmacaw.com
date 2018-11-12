@@ -34,7 +34,7 @@ export default class HeaderController {
     const elements = []
     headings.each((idx, el) => {
       const titleEl = document.createElement('div')
-      titleEl.classList = className + '__title'
+      titleEl.className = className + '__title'
       titleEl.innerText = el.innerText
       const sectionId = titleEl.dataset.sectionId = el.parentElement.id
       titleEl.onclick = () => this.scrollToSection(sectionId)

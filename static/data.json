@@ -9,6 +9,7 @@
     "Leander Seefeld"
   ],
   "experiences": [{
+    "id": "stuff",
     "company": {
       "name": "Stuff",
       "location": "Auckland, New Zealand",
@@ -33,6 +34,7 @@
     }],
     "skills": ["JavaScript", "Node.js", "Webpack", "Sass", "PostgreSQL", "Ruby", "Ruby on Rails", "Amazon Web Services"]
   }, {
+    "id": "hbsis",
     "company": {
       "name": "HBSIS",
       "location": "Blumenau, Brazil",
@@ -43,6 +45,7 @@
     "title": "Software Engineer",
     "summary": "I worked on client specific demands based on the web. I was often responsible for developing the front-end of the solution using AngularJS, Gulp, Bower and sometimes Node.js for mock-ups.\nI also worked on the back-end - usually implemented using Java Spring Boot and NoSql (MongoDB).\n\nBeing close to the R&D department, I also got in touch with other technologies, like Akka and Facebook Graph API."
   }, {
+    "id": "philips",
     "company": {
       "name": "Philips Healthcare",
       "location": "Blumenau, Brazil",
@@ -53,6 +56,7 @@
     "title": "Software Engineer",
     "summary": "At Philips I worked at the Technology department. As my most significant attributions, I:\n- developed new components to extend the new HTML5 framework being used to support the migration of Tasy's existing functions, first in GWT and then in AngularJS;\n- researched technological improvements;\n- aided developers in following architectural standards and problem solving;\n- led developers on the development of new features and bug fixes;\n- represented the framework team to a Bangalore based team, fixing bugs, clearing up doubts and reporting status.\nI worked as a full-stack developer, respecting the existing server architecture in order not to break compatibility with the old platform and respecting the Philips Design specifications with regard to user experience.\nIn our team we kept documentation up-to-date as we developed new features or fixed existing ones, both in JavaDoc and in an internal Wiki.\nI also helped the team in the adoption of TDD with my past experiences and research.\nWe followed the Scaled Agile Framework (SAFe) in the development of this new platform.\nWith this experience I've also expanded my skills at dealing with different people, leading other developers and software engineering itself."
   }, {
+    "id": "senior",
     "company": {
       "name": "Senior Sistemas",
       "location": "Blumenau, Brazil",

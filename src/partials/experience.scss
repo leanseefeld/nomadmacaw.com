@@ -1,16 +1,48 @@
-.l-experience-wrapper {
-  display: flex;
+$experiences-content-padding: 8px;
+$experience-margin: 24px;
+
+.c-experiences {
+  padding: 16px 0;
   overflow: hidden;
+
+  &__paginator {
+    display: flex;
+    align-items: baseline;
+    margin: 2em 0;
+    height: 1.2em;
+    position: relative;
+  }
+
+  &__content {
+    display: flex;
+    align-items: flex-start;
+    padding-left: $experiences-content-padding;
+  }
+
+  &__page {
+    font-family: "Saira", sans-serif;
+    font-size: 1.2em;
+    color: #262626;
+    opacity: 0.5;
+    font-weight: 700;
+    position: absolute;
+  }
 }
 
 .c-experience {
   flex-shrink: 0;
-  width: 100%;
-  padding: 0 32px;
+  width: #{"calc(100vw - "
+    (($experience-margin + $experiences-content-padding) * 2) ")"};
+  padding: 28px;
   box-sizing: border-box;
+  margin-left: $experience-margin;
+  align-self: flex-start;
+  transform-origin: 50% 5em;
 
   &__header {
     margin-bottom: 1em;
+    display: flex;
+    align-items: center;
   }
 
   &__logo {
@@ -33,6 +65,10 @@
   &__company-name {
     margin: 0;
     font-size: 1.2em;
+  }
+
+  &__company-name {
+    display: none;
   }
 
   &__date,
@@ -82,15 +118,15 @@
     margin: 0 0.6em 1em 0.6em;
 
     &__image {
-      width: 10em;
+      width: 8em;
       margin: 0 auto;
-      
+
       > img {
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         width: 100%;
       }
     }
-    
+
     p {
       margin: 0.5em 0 0;
     }

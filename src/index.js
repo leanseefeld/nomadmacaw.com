@@ -1,3 +1,4 @@
+import './polyfill'
 import HeaderController from './controllers/header'
 import DataLoader from './data-loader'
 import ServicesController from './controllers/services'

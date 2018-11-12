@@ -2,9 +2,9 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway|Saira:400,700);
 
 @import "./typography.scss";
-@import "../partials/partials";
 @import "./panels.scss";
 @import "./forms.scss";
+@import "../partials/partials";
 
 body {
   font-family: 'Raleway', sans-serif;
