@@ -1,3 +1,6 @@
+@import "../styles/helpers/typography";
+@import "../styles/helpers/vars";
+
 .l-services {
   padding: 54px 32px;
 }
@@ -18,16 +21,13 @@
   }
 
   h4 {
-    font-family: "Saira", sans-serif;
-    font-weight: 700;
+    @include saira(16px, 700);
     margin: 0 0 12px;
-    font-size: 16px;
   }
 
   p {
-    font-family: "Raleway", sans-serif;
+    @include raleway(14px);
     margin: 0;
-    font-size: 14px;
   }
 
   &__image {
@@ -60,7 +60,7 @@
 
     img {
       position: absolute;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px $shadow-color;
       width: calc(100% - 2em);
     }
 
@@ -93,7 +93,7 @@
 
     &:focus,
     &:active {
-      color: #333;
+      color: $text-color;
     }
   }
 }
@@ -120,7 +120,7 @@
       height: $height;
       display: flex;
       align-items: center;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 4px $shadow-color;
 
       > img {
         $size: 1.5em;
@@ -131,7 +131,7 @@
 
       > span {
         margin: auto 1em auto .5em;
-        font-family: "Saira", sans-serif;
+        @include saira;
       }
     }
   }

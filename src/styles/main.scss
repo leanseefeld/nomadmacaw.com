@@ -1,19 +1,17 @@
 @import "~normalize.css/normalize.css";
-@import url(https://fonts.googleapis.com/css?family=Raleway|Saira:400,700);
 
-@import "./devices";
-@import "./layout";
-@import "./typography.scss";
-@import "./panels.scss";
-@import "./forms.scss";
+@import "./typography";
+@import "./helpers/devices";
+@import "./helpers/layout";
+@import "./helpers/typography";
+@import "./helpers/vars";
+@import "./panels";
+@import "./forms";
 @import "../partials/partials";
 
 body {
-  font-family: 'Raleway', sans-serif;
-  color: #333333;
-  font-size: 14px;
-  height: 100vh;
-  position: relative;
+  @include raleway(14px);
+  color: $text-color;
   
   @include desktop {
     font-size: 16px;
@@ -40,7 +38,7 @@ section {
   margin: auto;
 
   &__label {
-    font-family: 'Saira', sans-serif;
+    @include saira;
     margin-top: 1em;
     display: inline-block;
   }
@@ -87,9 +85,8 @@ section {
 
 .copyright {
   display: block;
-  font-family: 'Saira', sans-serif;
-  font-size: 0.7em;
-  color: #737373;
+  @include saira(0.7em);
+  color: $complimentary-text-color;
   text-align: center;
 }
 

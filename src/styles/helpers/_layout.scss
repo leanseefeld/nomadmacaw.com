@@ -1,0 +1,11 @@
+@import "./vars";
+
+@mixin desktop-section {
+  max-width: 80%;
+  flex-shrink: 0;
+}
+
+@mixin panel ($p-shadow-color: $shadow-color) {
+  box-shadow: 0 2px 1em $p-shadow-color;
+  box-sizing: border-box;
+}

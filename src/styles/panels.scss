@@ -1,5 +1,6 @@
+@import "./helpers/layout";
+
 .l-panel {
-  box-shadow: 0 2px 1em rgba(0,0,0,.1);
+  @include panel;
   width: 100%;
-  box-sizing: border-box;
 }

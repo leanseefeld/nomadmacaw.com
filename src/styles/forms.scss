@@ -1,14 +1,17 @@
+@import "./helpers/typography";
+@import "./helpers/vars";
+
 .l-form {
   display: flex;
   flex-direction: column;
-  $blue: #1b72c3;
-  $blue--light: #61a8e9;
+  $accent-color: $primary-color;
+  $accent-color--light: $secondary-color;
 
   &__field {
     $input-margin-left: 0.3em;
     $input-width: #{'calc(100% - ' $input-margin-left ')'};
-    $border: solid #d9d9d9 1px;
-    $border-color--focus: $blue--light;
+    $border: solid $border-color-gray 1px;
+    $border-color--focus: $accent-color--light;
     margin-top: 1em;
 
     > input {
@@ -28,10 +31,9 @@
     }
 
     > label {
+      @include saira(0.9em);
       display: inline-block;
-      font-size: 0.9em;
-      font-family: "Saira";
-      color: #808080;
+      color: $complimentary-text-color;
       margin-bottom: 0.3em;
     }
 
@@ -58,8 +60,8 @@
 
   > button[type="submit"] {
     align-self: flex-end;
-    border: solid $blue 1px;
-    color: $blue;
+    border: solid $accent-color 1px;
+    color: $accent-color;
     background: none;
     text-transform: uppercase;
     font-size: 0.8em;
@@ -77,18 +79,18 @@
 
       path {
         fill: none;
-        stroke: $blue;
+        stroke: $accent-color;
       }
     }
 
     &:active,
     &:focus {
-      color: $blue--light;
+      color: $accent-color--light;
       outline: none;
-      border-color: $blue--light;
+      border-color: $accent-color--light;
 
       > svg path {
-        stroke: $blue--light;
+        stroke: $accent-color--light;
       }
     }
   }

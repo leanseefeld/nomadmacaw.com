@@ -1,5 +1,7 @@
-@import "../styles/devices";
-@import "../styles/layout";
+@import "../styles/helpers/devices";
+@import "../styles/helpers/layout";
+@import "../styles/helpers/typography";
+@import "../styles/helpers/vars";
 
 .nm-header {
   $top: &;
@@ -12,7 +14,7 @@
   transition: $transition;
   transition-property: padding, background-position, background-color, height,
     border-color;
-  
+
   @include mobile {
     height: 3em;
     background-image: linear-gradient(
@@ -35,19 +37,20 @@
   &__logo {
     cursor: pointer;
     position: absolute;
-    top: 1em;
     overflow: hidden;
     transform-origin: left top;
     transition: $transition;
     transition-property: transform, width;
     
     @include mobile {
+      top: 1em;
       height: 1.2em;
       width: 5em;
       transform: scale(2.5) translate(2.3em, 2em);
     }
-
+    
     @include desktop {
+      top: 0.5em;
       height: 1.8em;
       transform: scale(3) translate(58%, 160%);
     }
@@ -58,14 +61,14 @@
     }
 
     #logo {
-      fill: white;
+      fill: #fff;
       transition: fill $transition;
     }
 
     #text {
       transition: $transition;
       transition-property: fill, opacity;
-      fill: white;
+      fill: #fff;
     }
   }
 
@@ -75,17 +78,15 @@
 
     @include mobile {
       height: 2em;
-      font-family: "Saira", sans-serif;
-      font-size: 1.5em;
+      @include saira(1.5em);
       transition-property: opacity, transform;
       text-align: center;
       opacity: 0;
     }
 
     @include desktop {
-      font-size: 0.9em;
       color: #fff;
-      font-family: "Raleway", sans-serif;
+      @include raleway(0.9em);
       height: initial;
       text-align: right;
       transition-property: color;
@@ -128,7 +129,7 @@
       #hamburger {
         > path {
           fill: none;
-          stroke: white;
+          stroke: #fff;
           stroke-width: 0.48px;
           transition: ease-in-out 0.2s;
           transition-property: stroke, transform;
@@ -185,7 +186,7 @@
   &--opaque {
     @include mobile {
       background-position-y: -80vh;
-      border-color: #d9d9d9;
+      border-color: $border-color-gray;
     }
 
     @include desktop {
@@ -193,15 +194,16 @@
     }
 
     #{$top} {
+      $logo-color: #999999;
       &__logo {
         > svg {
           #logo {
-            fill: #999999;
+            fill: $logo-color;
           }
 
           @include desktop {
             #text {
-              fill: #999999;
+              fill: $logo-color;
             }
           }
         }
@@ -214,14 +216,14 @@
 
         &__menu {
           #hamburger > path {
-            stroke: #999999;
+            stroke: $logo-color;
           }
         }
       }
 
       @include desktop {
         &__title-list {
-          color: #999999;
+          color: $logo-color;
         }
       }
     }
