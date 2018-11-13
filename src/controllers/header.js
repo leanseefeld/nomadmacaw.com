@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import { isMobile } from '../helpers/device'
 
 export const className = 'nm-header'
 
@@ -39,24 +40,29 @@ export default class HeaderController {
       const sectionId = titleEl.dataset.sectionId = el.parentElement.id
       titleEl.onclick = () => this.scrollToSection(sectionId)
       elements.push(titleEl)
-    }).detach()
+    })
 
     getTitleList().append(elements)
   }
 
   register () {
     const handler = this.onScroll.bind(this)
-    window.addEventListener('scroll', handler)
+    window.addEventListener('scroll', handler, { passive: true })
     this.mount()
-    getHamburger().click(this.toggleMenu.bind(this))
-    const header = getHeader()[0]
-    header.addEventListener('transitionend', (evt) => {
-      if (evt.target === header && evt.propertyName === 'height') {
-        this.onScroll(true)
-      }
-    })
+
+    if (isMobile()) {
+      getHamburger().click(this.toggleMenu.bind(this))
+
+      const header = getHeader()[0]
+      header.addEventListener('transitionend', (evt) => {
+        if (evt.target === header && evt.propertyName === 'height') {
+          this.onScroll(true)
+        }
+      })
+      this.onScroll()
+    }
+
     getHeader().find(`.${className}__logo`).click(this.scrollToSection.bind(this, 'home'))
-    this.onScroll()
 
     return function unregister () {
       window.removeEventListener('scroll', handler)
@@ -109,7 +115,9 @@ export default class HeaderController {
       force = evt
     }
     this.update(window.innerHeight, window.scrollY)
-    this.syncHeader(force)
+    if (isMobile()) {
+      this.syncHeader(force)
+    }
   }
 
   syncHeader (force) {

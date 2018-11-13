@@ -1,6 +1,8 @@
 @import "~normalize.css/normalize.css";
 @import url(https://fonts.googleapis.com/css?family=Raleway|Saira:400,700);
 
+@import "./devices";
+@import "./layout";
 @import "./typography.scss";
 @import "./panels.scss";
 @import "./forms.scss";
@@ -12,11 +14,22 @@ body {
   font-size: 14px;
   height: 100vh;
   position: relative;
+  
+  @include desktop {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 section {
   box-sizing: border-box;
   min-height: 100vh;
+
+  @include desktop {
+    @include desktop-section;
+  }
 }
 
 .c-loading-icon {
