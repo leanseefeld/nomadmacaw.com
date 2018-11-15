@@ -27,6 +27,7 @@ section {
 
   @include desktop {
     @include desktop-section;
+    margin-bottom: 50vh;
   }
 }
 

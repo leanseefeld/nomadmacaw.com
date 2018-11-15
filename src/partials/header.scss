@@ -9,7 +9,7 @@
   $padding: 32px;
   width: 100%;
   position: fixed;
-  z-index: 10;
+  z-index: $level-header;
   box-sizing: border-box;
   transition: $transition;
   transition-property: padding, background-position, background-color, height,

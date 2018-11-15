@@ -1,10 +1,10 @@
 @import "../styles/helpers/devices";
 @import "../styles/helpers/typography";
 @import "../styles/helpers/vars";
+@import "../styles/helpers/layout";
 
 .l-home {
   height: 100vh;
-  background: linear-gradient(130deg, $primary-color, $secondary-color);
 
   @include desktop {
     width: 100%;
@@ -12,17 +12,45 @@
     position: relative;
   }
 
+  &__gradient {
+    @include position(0, 0, 0, 0);
+    background: linear-gradient(130deg, $primary-color, $secondary-color);
+    z-index: $level-background;
+    
+    @include mobile {
+      position: absolute;
+    }
+    
+    @include desktop {
+      position: fixed;
+    }
+  }
+  
+  &__paper-streak {
+    @include mobile {
+      display: none;
+    }
+
+    @include desktop {
+      @include position(0, 0, 0, 0);
+      background: url(../images/paper-path--desktop.svg) no-repeat right 210px/120%;
+      position: fixed;
+      z-index: $level-paper-streak;
+      transition: background-position-y linear 100ms;
+    }
+  }
+
   &__content {
     width: 100%;
 
     @include mobile {
-      background: url(../images/intro-bg-mobile.svg) no-repeat 95% top / auto 100%;
+      background: url(../images/intro-bg-mobile.svg) no-repeat 95% top / auto
+        100%;
       position: relative;
       top: 25%;
     }
 
     @include desktop {
-      background: url(../images/intro-bg-desktop.svg) no-repeat 100%;
       height: 70%;
       position: absolute;
       bottom: 0;
@@ -31,15 +59,15 @@
 
   .intro-panel {
     text-align: right;
-    
+
     @include mobile {
       padding: 3em 3em 3em 0;
     }
 
     @include desktop {
       position: relative;
-      right: 17%;
-      padding-top: 1em;
+      right: 20%;
+      padding-top: 2em;
     }
 
     h1,
@@ -52,19 +80,19 @@
       margin-top: 18px;
       color: $complimentary-text-color;
       @include saira(16px);
-      
+
       .web-designer {
         font-size: 25px;
         display: block;
       }
     }
   }
-  
+
   .intro-brief {
     color: #fff;
     @include saira(16px);
     text-align: right;
-    
+
     @include mobile {
       position: absolute;
       margin: 1em 3em;
@@ -72,9 +100,9 @@
 
     @include desktop {
       position: absolute;
-      right: 47%;
+      right: 50%;
       max-width: 16em;
-      margin: 4em 4em 0 0;
+      margin: 5em 5em 0 0;
       top: 0;
     }
   }
