@@ -2,7 +2,6 @@
 
 @import "./typography";
 @import "./helpers/devices";
-@import "./helpers/layout";
 @import "./helpers/typography";
 @import "./helpers/vars";
 @import "./panels";
@@ -10,7 +9,7 @@
 @import "../partials/partials";
 
 body {
-  @include raleway(14px);
+  @include saira;
   color: $text-color;
   
   @include desktop {
@@ -25,8 +24,15 @@ section {
   box-sizing: border-box;
   min-height: 100vh;
 
-  @include desktop {
-    @include desktop-section;
+  @include tablet {
+    margin: 0 auto;
+    max-width: 80%;
+  }
+
+  @include min-desktop {
+    max-width: 100%;
+    width: 78rem;
+    margin: 0 auto;
   }
 }
 

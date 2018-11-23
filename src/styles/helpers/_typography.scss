@@ -7,11 +7,6 @@
   }
 }
 
-@mixin raleway ($font-size: null, $font-weight: null) {
-  font-family: 'Raleway', sans-serif;
-  @include font-props($font-size, $font-weight)
-}
-
 @mixin saira ($font-size: null, $font-weight: null) {
   font-family: 'Saira', sans-serif;
   @include font-props($font-size, $font-weight)

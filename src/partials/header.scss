@@ -30,8 +30,8 @@
     padding: $padding;
   }
 
-  @include desktop {
-    padding: 0 10em;
+  @include min-tablet {
+    padding: 0 2.5rem;
   }
 
   &__logo {
@@ -41,17 +41,17 @@
     transform-origin: left top;
     transition: $transition;
     transition-property: transform, width;
-    
+
     @include mobile {
       top: 1em;
       height: 1.2em;
       width: 5em;
       transform: scale(2.5) translate(2.3em, 2em);
     }
-    
-    @include desktop {
-      top: 0.5em;
-      height: 1.8em;
+
+    @include min-tablet {
+      height: 1.4em;
+      margin: 0.5rem 0;
       transform: scale(3) translate(58%, 160%);
     }
 
@@ -84,9 +84,9 @@
       opacity: 0;
     }
 
-    @include desktop {
+    @include min-tablet {
       color: #fff;
-      @include raleway(0.9em);
+      @include saira(0.9em);
       height: initial;
       text-align: right;
       transition-property: color;
@@ -104,15 +104,20 @@
       opacity: 1;
     }
 
-    @include desktop {
+    @include min-tablet {
       opacity: 1;
       display: inline-block;
-      margin: 1.5em 2em;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+
+      & + & {
+        margin-left: 1.5rem;
+      }
     }
   }
 
   &__menu {
-    @include desktop {
+    @include min-tablet {
       display: none;
     }
 
@@ -174,10 +179,10 @@
         }
       }
 
-      @include desktop {
+      @include min-tablet {
         &__title {
-          margin-top: 1em;
-          margin-bottom: 1em;
+          margin-bottom: 0.7rem;
+          margin-top: 0.7rem;
         }
       }
     }
@@ -189,27 +194,20 @@
       border-color: $border-color-gray;
     }
 
-    @include desktop {
-      background-color: rgba(255, 255, 255, 0.8);
+    @include min-tablet {
+      background-color: $primary-color;
     }
 
-    #{$top} {
-      $logo-color: #999999;
-      &__logo {
-        > svg {
-          #logo {
-            fill: $logo-color;
-          }
-
-          @include desktop {
-            #text {
+    @include mobile {
+      #{$top} {
+        $logo-color: #999999;
+        &__logo {
+          > svg {
+            #logo {
               fill: $logo-color;
             }
           }
         }
-      }
-
-      @include mobile {
         &__title-list {
           opacity: 1;
         }
@@ -218,12 +216,6 @@
           #hamburger > path {
             stroke: $logo-color;
           }
-        }
-      }
-
-      @include desktop {
-        &__title-list {
-          color: $logo-color;
         }
       }
     }

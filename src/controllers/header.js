@@ -123,7 +123,9 @@ export default class HeaderController {
   syncHeader (force) {
     const titleList = getTitleList()
     const visibleTitle = titleList.find('.' + activeTitleClass)
-    const middleSection = selectSection(document.elementsFromPoint(1, window.innerHeight / 2 + 1))
+    const middleSection = selectSection(document.elementsFromPoint(window.innerWidth / 2, window.innerHeight / 2 + 1))
+
+    if (!middleSection) return
 
     if (force || middleSection.id !== visibleTitle.data('sectionId')) {
       const listTop = titleList[0].getBoundingClientRect().top

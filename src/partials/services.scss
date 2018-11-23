@@ -2,61 +2,116 @@
 @import "../styles/helpers/vars";
 
 .l-services {
-  padding: 54px 32px;
+  @include mobile {
+    padding: 3.5rem 2rem;
+  }
+
+  @include min-tablet {
+    padding: 2.5rem 2rem;
+  }
+
+  @include min-desktop {
+    &__content {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    &__skills {
+      position: relative;
+      margin: 3.5rem 0 3.5rem 4rem;
+      max-width: 18rem;
+      flex-shrink: 0;
+    }
+  }
+
+  &__separator {
+    $separator-border: solid $border-color-gray 1px;
+    margin: 0 2rem 2rem 2rem;
+    border-top: $separator-border;
+
+    @include min-desktop {
+      position: absolute;
+      border-top: none;
+      border-left: $separator-border;
+      margin: 1rem 0;
+      top: 0;
+      bottom: 0;
+
+      & ~ * {
+        margin-left: 2em;
+        text-align: left;
+      }
+    }
+  }
+}
+
+.services-container {
+  margin: 3.5rem auto;
+
+  @include min-tablet {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 3.5rem;
+  }
 }
 
 .c-service {
   $top: &;
-  display: flex;
-  flex-direction: row-reverse;
-  margin-bottom: 50px;
 
-  &__text {
-    text-align: right;
+  @include mobile {
+    & + & {
+      margin-top: 3.5rem;
+    }
   }
 
-  h4,
+  &__text {
+    text-align: center;
+  }
+
+  &__title,
   p {
     display: inline-block;
   }
 
-  h4 {
-    @include saira(16px, 700);
-    margin: 0 0 12px;
+  &__title {
+    @include saira(1.25rem);
+    color: #fff;
+    background-color: $secondary-color;
+    border-radius: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    margin: 0 0 1rem;
   }
 
   p {
-    @include raleway(14px);
     margin: 0;
   }
 
   &__image {
-    width: 116px;
-    max-width: 30vw;
-    flex-shrink: 0;
-    margin-left: 24px;
+    margin: 1.5rem auto 0;
 
     > img {
       max-width: 100%;
     }
-  }
 
-  &:nth-child(2n) {
-    flex-direction: row;
+    @include mobile {
+      max-width: 35vw;
+    }
 
-    #{$top} {
-      &__text {
-        text-align: left;
-      }
-
-      &__image {
-        margin: auto 24px auto 0;
-      }
+    @include min-tablet {
+      max-width: 8rem;
     }
   }
 
   &__image--web-design {
     position: relative;
+
+    @include mobile {
+      height: 25vw;
+    }
+
+    @include min-tablet {
+      height: 7rem;
+    }
 
     img {
       position: absolute;
@@ -95,13 +150,28 @@
     &:active {
       color: $text-color;
     }
+
+    @include min-desktop {
+      display: none;
+    }
   }
 }
 
 .c-stack-list {
   > h5 {
     text-align: center;
-    margin: 24px 0 0;
+    color: $complimentary-text-color;
+    font-size: 0.75rem;
+    font-weight: normal;
+    margin: 1.5rem 0 0;
+
+    @include min-desktop {
+      text-align: left;
+    }
+  }
+
+  &:last-of-type {
+    margin-bottom: 2px;
   }
 
   &__items {
@@ -110,6 +180,10 @@
     padding: 0;
     margin: 0;
     justify-content: center;
+
+    @include min-desktop {
+      justify-content: flex-start;
+    }
 
     > li {
       $height: 2em;
@@ -130,7 +204,7 @@
       }
 
       > span {
-        margin: auto 1em auto .5em;
+        margin: auto 1em auto 0.5em;
         @include saira;
       }
     }
