@@ -8,9 +8,11 @@ import TestimonialsController from './controllers/testimonials'
 
 new HeaderController().register()
 new ServicesController().register()
+const aboutController = new AboutController()
+aboutController.register()
 
 const dataLoader = new DataLoader()
-dataLoader.addListener(new AboutController())
+dataLoader.addListener(aboutController)
 dataLoader.addListener(new ExperienceController())
 dataLoader.addListener(new TestimonialsController())
 dataLoader.load()

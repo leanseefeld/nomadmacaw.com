@@ -11,6 +11,7 @@
 body {
   @include saira;
   color: $text-color;
+  line-height: 1.5em;
   
   @include desktop {
     font-size: 16px;

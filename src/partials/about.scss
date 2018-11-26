@@ -2,24 +2,115 @@
 @import "../styles/helpers/vars";
 
 .l-about {
-  padding: 48px 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 3.5rem 0;
+  $panel__max-width--tablet: 34rem;
+  $panel__max-width--desktop: 40rem;
+
+  @include min-tablet {
+    margin: 2rem auto;
+
+    &__content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+
+      > * {
+        margin: 2rem;
+      }
+    }
+    
+  }
+
+  &__info {
+    flex-shrink: 0;
+
+    @include tablet {
+      max-width: $panel__max-width--tablet;
+    }
+    
+    @include min-desktop {
+      max-width: $panel__max-width--desktop;
+    }
+  }
+
+  .avatar {
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #ccc;
+    margin: 0 auto;
+    box-sizing: border-box;
+    
+    > img {
+      height: 100%;
+    }
+    
+    @include mobile {
+      $size: 8rem;
+      height: $size;
+      width: $size;
+    }
+    
+    @include tablet {
+      $size: 10rem;
+      height: $size;
+      width: $size;
+      border-width: 6px;
+    }
+    
+    @include min-desktop {
+      $size: 11rem;
+      height: $size;
+      width: $size;
+      border-width: 6px;
+    }
+  }
+
+  &__name {
+    text-align: center;
+    margin: 1rem 0;
+    font-weight: 500;
+    
+    @include mobile {
+      font-size: 1.25rem;
+    }
+    
+    @include min-tablet {
+      font-size: 1.5rem;
+    }
+  }
 
   .brief {
-    @include saira (0.9em);
     color: $complimentary-text-color;
-    margin: 8px 0;
+    max-width: 19rem;
+    padding: 0;
+    
+    @include mobile {
+      margin: 1.5rem auto;
+    }
 
+    @include min-tablet {
+      margin: 2rem 0 0;
+    }
+    
     > li {
+      display: flex;
+      align-items: center;
       list-style: none;
-      margin: 0 0 12px;
+      line-height: 1em;
+
+      &:not(:last-child) {
+        margin: 0 0 1rem;
+      }
 
       > img {
-        max-width: 1.6em;
+        max-width: 1.5rem;
         float: left;
-        margin-right: 1em;
+        margin-right: 0.75rem;
+      }
+
+      > p {
+        margin: 0;
       }
     }
 
@@ -29,33 +120,41 @@
     }
   }
 
-  h4 {
-    @include saira (0.9em);
-    font-weight: normal;
-    font-size: 1.5em;
-    color: $text-color;
-    margin: 16px 0;
-  }
-
-  .avatar {
-    $size: 8em;
-    height: $size;
-    width: $size;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 4px solid #ccc;
-
-    > img {
-      height: 100%;
-    }
-  }
-
   .about-message {
-    padding: 1em 1.2em;
     box-sizing: border-box;
-    margin: 2em 0;
-    text-indent: 1em;
-    font-size: 0.9em;
+
+    @include tablet {
+      padding: 2rem;
+      max-width: $panel__max-width--tablet;
+    }
+    
+    @include min-desktop {
+      padding: 3rem;
+      max-width: $panel__max-width--desktop;
+    }
+    
+    p {
+      text-indent: 1em;
+      
+      &:last-child {
+        text-indent: 0;
+        margin-left: 1em;
+      }
+    }
+    
+    @include mobile {
+      width: calc(100% - 4rem);
+      margin: 2rem auto;
+      padding: 1em 0;
+      overflow: hidden;
+      transition: ease-in-out 200ms;
+      transition-property: max-height, width, padding;
+      
+      &--expanded {
+        padding: 1rem 2rem;
+        width: 100%;
+      }
+    }
 
     .about__expand {
       display: block;

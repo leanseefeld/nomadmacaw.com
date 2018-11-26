@@ -46,11 +46,11 @@ export default class ServicesController {
     })
   }
 
-  update (newState) {
+  update (digest) {
     const previousState = this.state
     this.state = {
       ...this.state,
-      ...newState
+      ...digest
     }
 
     this.render(previousState, this.state)
