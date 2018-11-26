@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import { isMobile } from '../helpers/device'
+import debounce from 'lodash/debounce'
 
 export const className = 'nm-header'
 
@@ -47,22 +48,25 @@ export default class HeaderController {
 
   register () {
     const handler = this.onScroll.bind(this)
-    window.addEventListener('scroll', handler, { passive: true })
     this.mount()
 
-    if (isMobile()) {
-      getHamburger().click(this.toggleMenu.bind(this))
-
-      const header = getHeader()[0]
-      header.addEventListener('transitionend', (evt) => {
-        if (evt.target === header && evt.propertyName === 'height') {
-          this.onScroll(true)
-        }
-      })
-      this.onScroll()
-    }
-
+    getHamburger().click(this.toggleMenu.bind(this))
     getHeader().find(`.${className}__logo`).click(this.scrollToSection.bind(this, 'home'))
+
+    if (isMobile()) {
+      this.onScroll()
+      const onTransitionEnd = debounce((evt) => {
+        getHeader()[0].removeEventListener('transitionend', onTransitionEnd)
+        getTitleList()[0].removeEventListener('transitionend', onTransitionEnd)
+
+        this.syncHeader(true)
+        window.addEventListener('scroll', handler, { passive: true })
+      }, 200)
+      getHeader()[0].addEventListener('transitionend', onTransitionEnd)
+      getTitleList()[0].addEventListener('transitionend', onTransitionEnd)
+    } else {
+      window.addEventListener('scroll', handler, { passive: true })
+    }
 
     return function unregister () {
       window.removeEventListener('scroll', handler)
@@ -128,12 +132,10 @@ export default class HeaderController {
     if (!middleSection) return
 
     if (force || middleSection.id !== visibleTitle.data('sectionId')) {
-      const listTop = titleList[0].getBoundingClientRect().top
-      const target = titleList.find(`[data-section-id=${middleSection.id}]`)
-      const targetMiddle = target[0].getBoundingClientRect().top - target[0].getBoundingClientRect().height / 3
+      const target = titleList.find(`[data-section-id=${middleSection.id}]`)[0]
       visibleTitle.removeClass(activeTitleClass)
-      target.addClass(activeTitleClass)
-      titleList.animate({ scrollTop: titleList[0].scrollTop + (targetMiddle - listTop) }, 200)
+      target.classList.add(activeTitleClass)
+      titleList.animate({ scrollTop: target.offsetTop - target.offsetHeight / 2 }, 200)
     }
   }
 

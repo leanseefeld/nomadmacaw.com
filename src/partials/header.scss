@@ -6,27 +6,19 @@
 .nm-header {
   $top: &;
   $transition: ease-in-out 0.3s;
-  $padding: 32px;
+  $padding: 2rem;
+  $icon-height--mobile: 1.2rem;
+  $icon-top--mobile: 2.75rem / 2 - 0.5rem;
+  $height--mobile: 2.75rem;
   width: 100%;
   position: fixed;
   z-index: 10;
   box-sizing: border-box;
   transition: $transition;
-  transition-property: padding, background-position, background-color, height,
-    border-color;
+  transition-property: padding, background-color, height;
 
   @include mobile {
-    height: 3em;
-    background-image: linear-gradient(
-      35deg,
-      #e5e5e5,
-      #fff 50%,
-      #fff 70%,
-      rgba(0, 0, 0, 0) 80%
-    );
-    background-position-y: 0;
-    background-size: 100vw 200vh;
-    border-bottom: 1px solid transparent;
+    height: $height--mobile;
     padding: $padding;
   }
 
@@ -43,9 +35,8 @@
     transition-property: transform, width;
 
     @include mobile {
-      top: 1em;
-      height: 1.2em;
-      width: 5em;
+      top: $icon-top--mobile;
+      height: $icon-height--mobile;
       transform: scale(2.5) translate(2.3em, 2em);
     }
 
@@ -75,17 +66,18 @@
   &__title-list {
     overflow: hidden;
     transition: $transition;
+    color: #fff;
+    position: relative;
 
     @include mobile {
-      height: 2em;
-      @include saira(1.5em);
-      transition-property: opacity, transform;
+      height: $height--mobile;
+      @include saira(1.25rem);
+      transition-property: color, opacity, transform;
       text-align: center;
       opacity: 0;
     }
 
     @include min-tablet {
-      color: #fff;
       @include saira(0.9em);
       height: initial;
       text-align: right;
@@ -122,10 +114,10 @@
     }
 
     @include mobile {
-      width: 24px;
-      height: 16px;
+      width: 1.5rem;
+      top: $icon-top--mobile;
+      height: $icon-height--mobile;
       position: absolute;
-      top: $padding;
       right: $padding;
       transition: ease-in-out 0.2s;
       transition-property: transform, top;
@@ -165,8 +157,6 @@
         transform: none;
 
         @include mobile {
-          width: 2.4em;
-
           #text {
             opacity: 0;
           }
@@ -189,33 +179,12 @@
   }
 
   &--opaque {
-    @include mobile {
-      background-position-y: -80vh;
-      border-color: $border-color-gray;
-    }
-
-    @include min-tablet {
-      background-color: $primary-color;
-    }
+    background-color: $primary-color;
 
     @include mobile {
       #{$top} {
-        $logo-color: #999999;
-        &__logo {
-          > svg {
-            #logo {
-              fill: $logo-color;
-            }
-          }
-        }
         &__title-list {
           opacity: 1;
-        }
-
-        &__menu {
-          #hamburger > path {
-            stroke: $logo-color;
-          }
         }
       }
     }
@@ -224,7 +193,6 @@
   @include mobile {
     &--open {
       height: 100vh;
-      background-position-y: -100vh;
 
       #{$top} {
         &__logo {
