@@ -1,10 +1,17 @@
 {
   "about": [
     "Hi there, I am Leander. I have been working with web development for over six years, developing intuitive solutions that last long and are easy to extend.",
-    "I believe that focusing on your goals and hearing what you have to say is key to a successful partnership. So is flexibility to go the extra mile. After all, you are unique - just like your projects.",
-    "Born in Brazil and exported to the world, ever since school I have enjoyed resolving problems in creative ways. Exploring new ideas and places keeps me going, as by doing so I always find new inspirations in nature and in people. This is what I try to bring to my work.",
+    "",
+    "I believe that focusing on your goals and hearing what you have to say is key to a successful partnership. So is flexibility to go the extra mile.",
+    "After all, you are unique - just like your projects.",
+    "",
+    "Born in Brazil and exported to the world, ever since school I have enjoyed resolving problems in creative ways. Exploring new ideas and places",
+    "keeps me going, as by doing so I always find new inspirations in nature and in people. This is what I try to bring to my work.",
+    "",
     "It's with inspiration, passion and technical expertise that I hope to make your digital presence a truly remarkable one.",
-    "\nBest regards,\nLeander Seefeld"
+    "",
+    "\nBest regards,",
+    "\nLeander Seefeld"
   ],
   "experiences": [{
     "id": "stuff",
@@ -16,7 +23,14 @@
     "start": "Sep 2017",
     "end": "Aug 2018",
     "title": "Fullstack Engineer",
-    "summary": "Assigned to the Commerce department, I help in maintaining and evolving products such as indexed.co.nz and popshop.stuff.co.nz, as well as bootstrapping or rewriting websites for partnerships such as donehealthcovered.co.nz and energyclubnz.com.\nReactJS is heavily used on the frontend while the backend is written in NodeJS with ExpressJS and GraphQL. For maintaining our internal commerce APIs however, I use Ruby on Rails and EmberJS.\nMy responsibilities range from architectural decisions during conception phase to deployment and maintenance with proper CI/CD.\nI pride myself in having upskilled in React, the AWS environment and other tools required for the success of the product in relatively short time frames. This adaptability, I believe, is key to creating great projects and maintaining a good relationship with my peers in an environment that is constantly evolving.",
+    "summary": [
+      "Assigned to the Commerce department, I help in maintaining and evolving products such as indexed.co.nz and popshop.stuff.co.nz, as well as bootstrapping or rewriting websites for partnerships such as donehealthcovered.co.nz and energyclubnz.com.",
+      "",
+      "ReactJS is heavily used on the frontend while the backend is written in NodeJS with ExpressJS and GraphQL. For maintaining our internal commerce APIs however, I use Ruby on Rails and EmberJS.",
+      "My responsibilities range from architectural decisions during conception phase to deployment and maintenance with proper CI/CD.",
+      "",
+      "I pride myself in having upskilled in React, the AWS environment and other tools required for the success of the product in relatively short time frames. This adaptability, I believe, is key to creating great projects and maintaining a good relationship with my peers in an environment that is constantly evolving."
+    ],
     "projects": [{
       "name": "Indexed",
       "link": "https://indexed.co.nz",
@@ -41,7 +55,12 @@
     "start": "May 2016",
     "end": "May 2017",
     "title": "Software Engineer",
-    "summary": "I worked on client specific demands based on the web. I was often responsible for developing the front-end of the solution using AngularJS, Gulp, Bower and sometimes Node.js for mock-ups.\nI also worked on the back-end - usually implemented using Java Spring Boot and NoSql (MongoDB).\n\nBeing close to the R&D department, I also got in touch with other technologies, like Akka and Facebook Graph API."
+    "summary": [
+      "I worked on client specific demands based on the web. I was often responsible for developing the front-end of the solution using AngularJS, Gulp, Bower and sometimes Node.js for mock-ups.",
+      "I also worked on the back-end - usually implemented using Java Spring Boot and NoSql (MongoDB).",
+      "",
+      "Being close to the R&D department, I also got in touch with other technologies, like Akka and Facebook Graph API."
+    ]
   }, {
     "id": "philips",
     "company": {
@@ -52,7 +71,27 @@
     "start": "Feb 2015",
     "end": "Feb 2016",
     "title": "Software Engineer",
-    "summary": "At Philips I worked at the Technology department. As my most significant attributions, I:\n- developed new components to extend the new HTML5 framework being used to support the migration of Tasy's existing functions, first in GWT and then in AngularJS;\n- researched technological improvements;\n- aided developers in following architectural standards and problem solving;\n- led developers on the development of new features and bug fixes;\n- represented the framework team to a Bangalore based team, fixing bugs, clearing up doubts and reporting status.\nI worked as a full-stack developer, respecting the existing server architecture in order not to break compatibility with the old platform and respecting the Philips Design specifications with regard to user experience.\nIn our team we kept documentation up-to-date as we developed new features or fixed existing ones, both in JavaDoc and in an internal Wiki.\nI also helped the team in the adoption of TDD with my past experiences and research.\nWe followed the Scaled Agile Framework (SAFe) in the development of this new platform.\nWith this experience I've also expanded my skills at dealing with different people, leading other developers and software engineering itself."
+    "summary": [
+      "At Philips I worked at the Technology department. As my most significant attributions, I:",
+      "- developed new components to extend the new HTML5 framework being used to support the migration of Tasy's existing functions, first in GWT and then in AngularJS;",
+      "- researched technological improvements;",
+      "- aided developers in following architectural standards and problem solving;",
+      "- led developers on the development of new features and bug fixes;",
+      "- represented the framework team to a Bangalore based team, fixing bugs, clearing up doubts and reporting status.",
+      "",
+      "I worked as a full-stack developer, respecting the existing server architecture in order not to break compatibility with the old platform and respecting the Philips Design specifications with regard to user experience.",
+      "",
+      "In our team we kept documentation up-to-date as we developed new features or fixed existing ones, both in JavaDoc and in an internal Wiki.",
+      "I also helped the team in the adoption of TDD with my past experiences and research.",
+      "We followed the Scaled Agile Framework (SAFe) in the development of this new platform.",
+      "",
+      "With this experience I've also expanded my skills at dealing with different people, leading other developers and software engineering itself."
+    ],
+    "projects": [{
+      "name": "Tasy HTML5",
+      "link": "https://www.philips.com.au/healthcare/resources/landing/tasy",
+      "thumbnail": "projects/tasy-html5.jpg"
+    }]
   }, {
     "id": "senior",
     "company": {
@@ -63,7 +102,14 @@
     "start": "Jan 2012",
     "end": "Feb 2015",
     "title": "Java and C# Developer",
-    "summary": "Assisted in the migration of a product from Delphi to Java.\nAlso worked maintaining an internal JEE framework, having worked a lot with memory consume optimization.\nDevelopment and maintenance of an internal framework, covering visual layer (web: JavaScript, HTML and CSS), persistence layer, plugin development for the Eclipse platform, JEE, optimizations and test automation for browsers and Eclipse.\nMaintenance and improvement of a middleware for communication of digital fiscal documents between Senior solutions and the Federal and Municipal government.\nDevelopment with C# and ASP."
+    "summary": [
+      "In my first professional experience, I:",
+      "- Assisted in the migration of a product from Delphi to Java.",
+      "- Also worked maintaining an internal JEE framework, having worked a lot with memory consume optimization.",
+      "- Development and maintenance of an internal framework, covering visual layer (web: JavaScript, HTML and CSS), persistence layer, plugin development for the Eclipse platform, JEE, optimizations and test automation for browsers and Eclipse.",
+      "- Maintenance and improvement of a middleware for communication of digital fiscal documents between Senior solutions and the Federal and Municipal government.",
+      "- Development with C# and ASP."
+    ]
   }],
   "testimonials": [{
     "author": "Caique Caleiro",

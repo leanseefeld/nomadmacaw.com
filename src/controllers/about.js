@@ -1,5 +1,6 @@
 import AbstractLoaderController from './AbstractLoaderController'
 import { isMobile } from '../helpers/device'
+import { parse as parseText } from '../helpers/text-parser'
 
 export default class AboutController extends AbstractLoaderController {
   constructor () {
@@ -52,7 +53,7 @@ export default class AboutController extends AbstractLoaderController {
         }
         this._expandButton.remove()
 
-        panel.innerHTML = '<p>' + content.join('</p><p>').replace(/\n/g, '<br/>') + '</p>'
+        panel.innerHTML = parseText(content)
         panel.classList.add(expandedClass)
 
         if (!skipAnimation) {

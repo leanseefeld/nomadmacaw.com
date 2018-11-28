@@ -11,3 +11,7 @@
   font-family: 'Saira', sans-serif;
   @include font-props($font-size, $font-weight)
 }
+
+@mixin copy-text {
+  line-height: 1.5em;
+}

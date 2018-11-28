@@ -2,9 +2,10 @@
 @import "../styles/helpers/vars";
 
 .l-about {
-  padding: 3.5rem 0;
-  $panel__max-width--tablet: 34rem;
-  $panel__max-width--desktop: 40rem;
+  @include mobile {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   @include min-tablet {
     margin: 2rem auto;
@@ -86,7 +87,7 @@
     padding: 0;
     
     @include mobile {
-      margin: 1.5rem auto;
+      margin: 1.5rem 2rem;
     }
 
     @include min-tablet {
@@ -97,7 +98,6 @@
       display: flex;
       align-items: center;
       list-style: none;
-      line-height: 1em;
 
       &:not(:last-child) {
         margin: 0 0 1rem;
@@ -125,15 +125,14 @@
 
     @include tablet {
       padding: 2rem;
-      max-width: $panel__max-width--tablet;
     }
     
     @include min-desktop {
       padding: 3rem;
-      max-width: $panel__max-width--desktop;
     }
     
     p {
+      @include copy-text;
       text-indent: 1em;
       
       &:last-child {

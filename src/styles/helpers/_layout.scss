@@ -3,4 +3,12 @@
 @mixin panel ($p-shadow-color: $shadow-color) {
   box-shadow: 0 2px 1em $p-shadow-color;
   box-sizing: border-box;
+
+  @include tablet {
+    max-width: $panel__max-width--tablet;
+  }
+  
+  @include min-desktop {
+    max-width: $panel__max-width--desktop;
+  }
 }

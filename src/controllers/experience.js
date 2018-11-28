@@ -1,48 +1,53 @@
 import AbstractLoaderController from './AbstractLoaderController'
 import experienceTemplate from '../partials/experience-template.ejs'
+import { parse as parseText } from '../helpers/text-parser'
+import * as domQueries from '../helpers/dom-queries'
 
-export function findLastElementBeforeY (parent, y, elements) {
-  if (y >= parent.offsetHeight) {
-    return elements[elements.length - 1]
-  }
-  let p = 0
-  let q = elements.length - 1
-  let i = 0
+function configToggleHandler (container, toggle, fullContent, collapsedContent) {
+  const insertLast = () => domQueries.findLastInnermostElement(container).insertAdjacentElement('beforeend', toggle)
 
-  // binary search on array with repeated items
-  while (p < q - 1) {
-    i = Math.floor((p + q) / 2)
-    const currentOffsetTop = elements[i].offsetTop
-    if (currentOffsetTop < y) {
-      p = i
-      while (p < q && elements[p + 1].offsetTop === currentOffsetTop) p++
-    } else {
-      q = i
-      while (p < q && elements[q - 1].offsetTop === currentOffsetTop) q--
-    }
-  }
-  return elements[p]
-}
-
-function configToggleHandler (toggle, fullContent, collapsedContent) {
   const expandedSummaryClass = 'c-experience__summary--expanded'
 
   toggle.addEventListener('click', () => {
-    const summary = toggle.parentElement.parentElement // div.toggle < p < div.summary
     toggle.remove()
-    if (!summary.classList.contains(expandedSummaryClass)) {
+    if (!container.classList.contains(expandedSummaryClass)) {
       toggle.lastElementChild.innerHTML = 'See less'
       toggle.firstChild.textContent = ' '
-      summary.innerHTML = fullContent
-      summary.classList.add(expandedSummaryClass)
+      container.innerHTML = fullContent
+      container.classList.add(expandedSummaryClass)
     } else {
       toggle.lastElementChild.innerHTML = 'see more'
       toggle.firstChild.textContent = '... '
-      summary.innerHTML = collapsedContent
-      summary.classList.remove(expandedSummaryClass)
+      container.innerHTML = collapsedContent
+      container.classList.remove(expandedSummaryClass)
     }
-    summary.lastElementChild.appendChild(toggle)
+    insertLast()
   })
+
+  insertLast()
+}
+
+function spannizeElementContents (element) {
+  if (!element.childElementCount) {
+    element.innerHTML = element.textContent.split(/\s+/).map(word => word ? `<span nm-generated>${word}</span>` : '').join(' ')
+  } else {
+    for (let i = 0; i < element.childElementCount; i++) {
+      spannizeElementContents(element.children.item(i))
+    }
+  }
+}
+
+function unspannizeElementContents (element) {
+  if (element.tagName === 'SPAN' && element.getAttribute('nm-generated') !== null) {
+    element.parentElement.innerHTML = element.parentElement.textContent
+    return true
+  } else {
+    for (let i = 0; i < element.childElementCount; i++) {
+      if (unspannizeElementContents(element.children.item(i))) {
+        break
+      }
+    }
+  }
 }
 
 export function collapseSummary (container) {
@@ -53,46 +58,35 @@ export function collapseSummary (container) {
     toggle.remove()
 
     const heightPercentage = Math.floor(summary.offsetHeight * 100 / window.innerHeight)
-    if (heightPercentage > 20) {
+    if (heightPercentage > 40) {
       const originalHtml = summary.innerHTML
 
-      for (let p of summary.querySelectorAll('p')) {
-        p.innerHTML = p.textContent.split(/\s/).map(word => `<span>${word}</span>`).join(' ')
-      }
-      const wordElements = summary.querySelectorAll('p > span')
+      spannizeElementContents(summary)
+      const wordElements = summary.querySelectorAll('span')
       let spaceAfter = 0
       let lastVisibleWord
       do {
         lastVisibleWord = lastVisibleWord
           ? lastVisibleWord.previousElementSibling
-          : findLastElementBeforeY(summary, window.innerHeight * 0.2, wordElements)
+          : domQueries.lastChildBeforeOffsetTop(summary, window.innerHeight * 0.4, wordElements)
         spaceAfter = summary.offsetWidth - (lastVisibleWord.offsetLeft + lastVisibleWord.offsetWidth)
       } while (spaceAfter < toggleWidth)
 
       while (lastVisibleWord.nextSibling) {
         lastVisibleWord.nextSibling.remove()
       }
-      while (lastVisibleWord.parentElement.nextElementSibling) {
-        lastVisibleWord.parentElement.nextElementSibling.remove()
+      let parent = lastVisibleWord.parentElement
+      while (parent !== summary) {
+        while (parent.nextElementSibling) {
+          parent.nextElementSibling.remove()
+        }
+        parent = parent.parentElement
       }
-      for (let p of summary.children) {
-        p.innerHTML = p.textContent
-      }
+      unspannizeElementContents(summary)
 
-      configToggleHandler(toggle, originalHtml, summary.innerHTML)
-
-      summary.lastElementChild.appendChild(toggle)
+      configToggleHandler(summary, toggle, originalHtml, summary.innerHTML)
     }
   }
-}
-
-export function getExperienceFromPoints (x, y) {
-  let targetElements = document.elementsFromPoint(x, y)
-  let target
-  do {
-    target = targetElements.shift()
-  } while (target && !target.classList.contains('c-experience'))
-  return target
 }
 
 export class Container {
@@ -134,7 +128,9 @@ export class Container {
     this.element.style.transform = `translate(${x}px, ${y}px)`
     if (this.applyTransition) {
       for (let element of this.element.children) {
-        this.applyTransition(element, this.computeElementPosition(element))
+        if (element.getAttribute('nm-ignore-animation') === null) {
+          this.applyTransition(element, this.computeElementPosition(element))
+        }
       }
     }
     return this
@@ -248,16 +244,16 @@ export default class ExperienceController extends AbstractLoaderController {
 
         const minimumOffset = Math.floor(window.innerWidth / 5)
         const targetX = direction === 'LEFT' ? window.innerWidth - minimumOffset : minimumOffset
-        const containerTop = this.content.element.getBoundingClientRect().y + 1
-        let target = getExperienceFromPoints(targetX, Math.max(0, containerTop))
+        let target = domQueries.childAtOrBeforeX(this.content.element, targetX)
         if (!target) {
-          target = getExperienceFromPoints(window.innerWidth / 2, containerTop)
+          target = domQueries.childAtOrBeforeX(this.content.element, window.innerWidth / 2)
         }
         this.slideToExperience(target)
       }
     }
     wrapper.addEventListener('touchend', touchEndHandler)
     wrapper.addEventListener('touchcancel', touchEndHandler)
+    this.slideToExperience(this.content.element.firstElementChild)
   }
 
   configurePaginator () {
@@ -277,18 +273,31 @@ export default class ExperienceController extends AbstractLoaderController {
     firstPage.style.opacity = 1
 
     const secondPage = firstPage.nextElementSibling
-    secondPage.style.left = firstExperienceBcr.x + firstExperienceBcr.width - secondPage.offsetWidth + 'px'
+    secondPage.style.left = firstExperienceBcr.x + firstExperienceBcr.width - secondPage.offsetWidth / 2 + 'px'
 
     const firstMidpoint = firstPage.offsetLeft + firstPage.offsetWidth / 2
     let lastMidpoint = secondPage.offsetLeft + secondPage.offsetWidth / 2
     const midpointDistance = lastMidpoint - firstMidpoint
-    for (let i = 2; i < container.childElementCount; i++) {
+
+    for (let i = 2, j = container.childElementCount; i < j; i++) {
       const page = container.children.item(i)
       lastMidpoint += midpointDistance
       page.style.left = lastMidpoint - page.offsetWidth / 2 + 'px'
     }
+    const inserts = []
+    for (let i = 1, j = container.childElementCount; i < j; i++) {
+      const prevPage = container.children.item(i - 1)
+      const nextPage = prevPage.nextElementSibling
+      const separator = document.createElement('DIV')
+      separator.className = 'c-experiences__page-separator'
+      separator.style.left = `calc(${prevPage.offsetLeft + prevPage.offsetWidth}px + 1rem)`
+      separator.style.width = `calc(${nextPage.offsetLeft - prevPage.offsetLeft - prevPage.offsetWidth}px - 2rem)`
+      separator.setAttribute('nm-ignore-animation', '')
+      inserts.push(() => prevPage.insertAdjacentElement('afterend', separator))
+    }
+    inserts.forEach(fn => fn())
 
-    const paginatorWidth = container.lastElementChild.offsetLeft - firstPage.offsetLeft
+    const paginatorWidth = container.lastElementChild.offsetLeft + (container.lastElementChild.offsetWidth / 2) - firstPage.offsetLeft
     this.paginator.maxOffsetX = paginatorWidth
     this.paginator.scrollRatio = paginatorWidth / this.content.maxOffsetX
 
@@ -303,7 +312,11 @@ export default class ExperienceController extends AbstractLoaderController {
   onDataLoaded (data) {
     super.onDataLoaded(data)
     const wrapper = document.querySelector('#experience .c-experiences')
-    wrapper.innerHTML = experienceTemplate({ experiences: data.experiences })
+    const experiences = data.experiences.map(exp => ({
+      ...exp,
+      summary: parseText(exp.summary)
+    }))
+    wrapper.innerHTML = experienceTemplate({ experiences })
     collapseSummary(wrapper)
     this.configurePaginator()
     this.configureTouchListeners(wrapper)

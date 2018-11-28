@@ -2,17 +2,28 @@
 @import "../styles/helpers/vars";
 @import "../styles/helpers/typography";
 
-$experiences-content-padding: 8px;
-$experience-margin: 24px;
+.l-experience {
+  padding-left: 0;
+  padding-right: 0;
+
+  > * {
+    margin-left: $section__horizontal-padding--mobile;
+    margin-right: $section__horizontal-padding--mobile;
+  }
+
+  &__wrapper {
+    overflow: hidden;
+    margin: 0;
+  }
+}
 
 .c-experiences {
-  padding: 16px 0;
-  overflow: hidden;
+  margin: 3.5rem 0 3rem;
 
   &__paginator {
     display: flex;
     align-items: baseline;
-    margin: 2em 0;
+    margin: 2rem 0;
     height: 1.2em;
     position: relative;
   }
@@ -20,35 +31,38 @@ $experience-margin: 24px;
   &__content {
     display: flex;
     align-items: flex-start;
-    padding-left: $experiences-content-padding;
   }
 
   &__page {
-    @include saira (1.2em);
     opacity: 0.5;
     font-weight: 700;
     position: absolute;
+  }
+
+  &__page-separator {
+    position: absolute;
+    border-top: 1px solid $border-color-gray;
+    top: 0.5rem;
   }
 }
 
 .c-experience {
   flex-shrink: 0;
-  width: #{"calc(100vw - "
-    (($experience-margin + $experiences-content-padding) * 2) ")"};
-  padding: 28px;
+  width: calc(100vw - 2rem);
+  padding: 1.5rem 1rem;
   box-sizing: border-box;
-  margin-left: $experience-margin;
+  margin-left: 1.5rem;
+  margin-right: 0.5rem;
   align-self: flex-start;
   transform-origin: 50% 5em;
 
   &__header {
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
     display: flex;
-    align-items: center;
   }
 
   &__logo {
-    $logo-size: 5.2em;
+    $logo-size: 4rem;
     display: inline-block;
     height: $logo-size;
     width: $logo-size;
@@ -66,7 +80,6 @@ $experience-margin: 24px;
   &__job-title,
   &__company-name {
     margin: 0;
-    font-size: 1.2em;
   }
 
   &__company-name {
@@ -75,26 +88,42 @@ $experience-margin: 24px;
 
   &__date,
   &__company-location {
-    @include saira (0.8em);
     color: $complimentary-text-color;
+    font-size: 0.75rem;
+    margin: 0.25rem 0;
+  }
+
+  &__company-location {
+    margin-bottom: 0;
   }
 
   &__date {
-    margin-top: 0.5em;
+    margin-top: 0.5rem;
   }
 
   &__summary {
     position: relative;
-    text-indent: 1em;
-    font-size: 0.9em;
-    line-height: 1.35em;
+    line-height: 1.25em;
 
     > p {
-      margin: 0 0 0.3em;
+      text-indent: 1em;
+    }
+
+    ul {
+      padding: 0 0 0 2rem;
+      list-style-type: none;
+
+      > li {
+        &:before {
+          content: "-";
+          margin-left: -0.5em;
+        }
+      }
     }
 
     &__toggle {
-      display: inline;
+      text-indent: 0;
+      display: inline-block;
       cursor: pointer;
 
       &-text {
@@ -111,15 +140,17 @@ $experience-margin: 24px;
   }
 
   &__label {
+    color: $label-text-color;
+    margin: 1.5rem 0 1rem;
     text-align: center;
   }
 
   &__project {
     text-align: center;
-    margin: 0 0.6em 1em 0.6em;
+    margin: 0.5rem;
 
     &__image {
-      width: 8em;
+      width: 6.25rem;
       margin: 0 auto;
 
       > img {
@@ -129,6 +160,7 @@ $experience-margin: 24px;
     }
 
     p {
+      font-size: 0.7rem;
       margin: 0.5em 0 0;
     }
   }

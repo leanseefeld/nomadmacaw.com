@@ -1,6 +1,7 @@
 $shadow-color: rgba(0, 0, 0, 0.1);
 
 $complimentary-text-color: #808080;
+$label-text-color: #b2b2b2;
 $border-color-gray: #d9d9d9;
 $text-color: #333333;
 
@@ -11,3 +12,9 @@ $gold: #e5a400;
 $primary-color: $blue;
 $primary-color--light: $blue--light;
 $secondary-color: $gold;
+
+$panel__max-width--tablet: 34rem;
+$panel__max-width--desktop: 40rem;
+
+$section__horizontal-padding--mobile: 2rem;
+$section__horizontal-padding--tablet: 3rem;

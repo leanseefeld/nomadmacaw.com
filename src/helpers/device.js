@@ -11,5 +11,5 @@ export function isTablet () {
 }
 
 export function isDesktop () {
-  return window.innerWidth >= TABLET_WIDTH
+  return window.innerWidth > TABLET_WIDTH
 }

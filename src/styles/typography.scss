@@ -30,11 +30,14 @@ h3 {
   font-size: 20px;
 }
 
-a,
-.arrow-link {
+a {
   text-decoration: underline;
   color: $complimentary-text-color;
-  @include saira(0.8em);
+}
+
+.arrow-link {
+  @extend a;
+  font-size: 0.8rem;
 }
 
 .arrow-link {
@@ -58,6 +61,7 @@ a,
 }
 
 .t-section-caption {
+  @include copy-text;
   text-align: center;
   margin: auto;
 
