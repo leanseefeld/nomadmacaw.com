@@ -1,47 +1,77 @@
 @import "../styles/helpers/vars";
 
-.l-testimonials {
-  padding: 48px 32px;
+.l-testimonials-wrapper {
+  @include mobile {
+    margin: 2rem auto;
+  }
+  
+  @include min-tablet {
+    margin: 2.5rem auto;
+    max-width: $panel__max-width--tablet;
+  }
+  
+  @include min-desktop {
+    max-width: $panel__max-width--desktop;
+  }
 }
 
 %testimonial-quote {
-  content: '';
+  content: "";
   display: block;
-  height: 1em;
-  width: 1.3em;
+  height: 1rem;
+  width: 1.3rem;
   background: url(../images/quote.svg);
   position: absolute;
 }
 
 .c-testimonial {
   display: inline-block;
-  margin: 2em;
+  margin: 1rem 0.5rem;
+
+  @include min-tablet {
+    margin: 1.5rem auto;
+  }
 
   &__message {
-    $quote-offset-y: -0.5em;
-    $quote-offset-x: -1.6em;
+    $quote-offset-y: -0.5rem;
     margin: 0;
     text-align: center;
     position: relative;
+    
+    @include mobile {
+      line-height: 1.25rem;
+    }
+    
+    @include min-tablet {
+      font-size: 1.25rem;
+      line-height: 1.5rem;
+    }
 
     &::before {
       @extend %testimonial-quote;
       top: $quote-offset-y;
-      left: $quote-offset-x;
+      right: 100%;
     }
-    
+
     &::after {
       @extend %testimonial-quote;
       transform: rotateZ(180deg);
       bottom: $quote-offset-y;
-      right: $quote-offset-x;
+      left: 100%;
     }
   }
 
   &__reference {
-    font-size: 0.7em;
-    text-align: right;
-    margin-right: 1em;
     color: $complimentary-text-color;
+    text-align: right;
+    
+    @include mobile {
+      font-size: 0.75rem;
+      margin: 0.5rem 1rem;
+    }
+    
+    @include min-tablet {
+      margin: 1rem 2rem;
+    }
   }
 }
