@@ -1,14 +1,19 @@
 @import "./vars";
 
 @mixin panel ($p-shadow-color: $shadow-color) {
-  box-shadow: 0 2px 1em $p-shadow-color;
   box-sizing: border-box;
+  
+  @include mobile {
+    box-shadow: 0 2px 1em $p-shadow-color;
+  }
 
   @include tablet {
     max-width: $panel__max-width--tablet;
+    box-shadow: 0 0.5rem 2rem $p-shadow-color;
   }
   
   @include min-desktop {
     max-width: $panel__max-width--desktop;
+    box-shadow: 0 0.5rem 2rem $p-shadow-color;
   }
 }

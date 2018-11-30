@@ -5,10 +5,18 @@
 .l-experience {
   padding-left: 0;
   padding-right: 0;
+  width: initial;
 
-  > * {
-    margin-left: $section__horizontal-padding--mobile;
-    margin-right: $section__horizontal-padding--mobile;
+  > p {
+    @include mobile {
+      padding-left: $section__horizontal-padding--mobile;
+      padding-right: $section__horizontal-padding--mobile;
+    }
+
+    @include min-tablet {
+      padding-left: $section__horizontal-padding--tablet;
+      padding-right: $section__horizontal-padding--tablet;
+    }
   }
 
   &__wrapper {
@@ -20,12 +28,20 @@
 .c-experiences {
   margin: 3.5rem 0 3rem;
 
+  @include min-tablet {
+    margin-top: 4rem;
+  }
+
   &__paginator {
     display: flex;
     align-items: baseline;
     margin: 2rem 0;
     height: 1.2em;
     position: relative;
+
+    @include min-tablet {
+      margin: 3rem 0;
+    }
   }
 
   &__content {
@@ -34,9 +50,15 @@
   }
 
   &__page {
+    cursor: pointer;
     opacity: 0.5;
     font-weight: 700;
     position: absolute;
+
+    &:hover {
+      // color: $primary-color;
+      opacity: 1 !important;
+    }
   }
 
   &__page-separator {
@@ -49,16 +71,30 @@
 .c-experience {
   flex-shrink: 0;
   width: calc(100vw - 2rem);
-  padding: 1.5rem 1rem;
   box-sizing: border-box;
-  margin-left: 1.5rem;
-  margin-right: 0.5rem;
   align-self: flex-start;
   transform-origin: 50% 5em;
 
+  @include mobile {
+    margin: 0 2rem;
+    padding: 1.5rem 1rem;
+  }
+  
+  @include min-tablet {
+    margin: 0 4rem;
+    padding: 2rem 3rem;
+  }
+
   &__header {
-    margin-bottom: 1rem;
     display: flex;
+
+    @include mobile {
+      margin-bottom: 1rem;
+    }
+
+    @include min-tablet {
+      margin-bottom: 2rem;
+    }
   }
 
   &__logo {
@@ -66,7 +102,14 @@
     display: inline-block;
     height: $logo-size;
     width: $logo-size;
-    margin-right: 1em;
+
+    @include mobile {
+      margin-right: 1em;
+    }
+
+    @include min-tablet {
+      margin: 0 1.5em 0 1rem;
+    }
 
     > img {
       width: 100%;
@@ -75,6 +118,14 @@
 
   &__title {
     display: inline-block;
+  }
+
+  &__job-title {
+    font-weight: 500;
+
+    @include min-tablet {
+      font-size: 1.25rem;
+    }
   }
 
   &__job-title,
@@ -89,8 +140,11 @@
   &__date,
   &__company-location {
     color: $complimentary-text-color;
-    font-size: 0.75rem;
     margin: 0.25rem 0;
+
+    @include mobile {
+      font-size: 0.75rem;
+    }
   }
 
   &__company-location {
@@ -107,6 +161,10 @@
 
     > p {
       text-indent: 1em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
 
     ul {
@@ -141,13 +199,27 @@
 
   &__label {
     color: $label-text-color;
-    margin: 1.5rem 0 1rem;
     text-align: center;
+
+    @include mobile {
+      margin: 1.5rem 0 1rem;
+    }
+
+    @include min-tablet {
+      margin: 2rem 0 1rem;
+    }
   }
 
   &__project {
     text-align: center;
-    margin: 0.5rem;
+
+    @include mobile {
+      margin: 0.5rem;
+    }
+
+    @include min-tablet {
+      margin: 1rem;
+    }
 
     &__image {
       width: 6.25rem;
@@ -159,9 +231,20 @@
       }
     }
 
+    a {
+      color: $primary-color;
+    }
+
     p {
-      font-size: 0.7rem;
       margin: 0.5em 0 0;
+
+      @include mobile {
+        font-size: 0.7rem;
+      }
+
+      @include min-tablet {
+        font-size: 0.8rem;
+      }
     }
   }
 }

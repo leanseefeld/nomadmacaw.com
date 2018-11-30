@@ -56,3 +56,34 @@ export function findLastInnermostElement (container) {
   } while (lastElement)
   return parent
 }
+
+/**
+ * Shorthand for `element.offsetLeft + element.offsetWidth / 2`.
+ * @param {HTMLElement} element
+ */
+export function offsetMiddle (element) {
+  return element.offsetLeft + element.offsetWidth / 2
+}
+
+export function spannizeElementContents (element) {
+  if (!element.childElementCount) {
+    element.innerHTML = element.textContent.split(/\s+/).map(word => word ? `<span nm-generated>${word}</span>` : '').join(' ')
+  } else {
+    for (let i = 0; i < element.childElementCount; i++) {
+      spannizeElementContents(element.children.item(i))
+    }
+  }
+}
+
+export function unspannizeElementContents (element) {
+  if (element.tagName === 'SPAN' && element.getAttribute('nm-generated') !== null) {
+    element.parentElement.innerHTML = element.parentElement.textContent
+    return true
+  } else {
+    for (let i = 0; i < element.childElementCount; i++) {
+      if (unspannizeElementContents(element.children.item(i))) {
+        break
+      }
+    }
+  }
+}

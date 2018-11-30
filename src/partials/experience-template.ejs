@@ -1,8 +1,11 @@
 <div class="c-experiences__paginator">
-  <% experiences.forEach(function(experience) { %>
+  <% experiences.forEach(function(experience, index) { %>
   <div class="c-experiences__page" data-company-id="<%= experience.id %>">
     <%= experience.id %>
   </div>
+  <% if (index < experiences.length - 1) { %>
+  <div class="c-experiences__page-separator" nm-ignore-animation></div>
+  <% } %>
   <% }) %>
 </div>
 
