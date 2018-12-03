@@ -12,6 +12,19 @@
   @include font-props($font-size, $font-weight)
 }
 
+@mixin poppins ($font-size: null, $font-weight: null) {
+  font-family: 'Poppins', sans-serif;
+  @include font-props($font-size, $font-weight)
+}
+
+@mixin body-font ($font-size: null, $font-weight: null) {
+  @include poppins($font-size, $font-weight);
+}
+
+@mixin decoration-font ($font-size: null, $font-weight: null) {
+  @include saira($font-size, $font-weight);
+}
+
 @mixin copy-text {
   line-height: 1.5em;
 }

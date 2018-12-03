@@ -66,7 +66,7 @@
   }
 
   &__title {
-    @include saira(1.25rem);
+    @include decoration-font(1.25rem);
     color: #fff;
     background-color: $secondary-color;
     border-radius: 1.5rem;
@@ -133,6 +133,7 @@
   position: relative;
 
   &__toggle {
+    @include decoration-font;
     display: block;
     margin: 1em auto;
     background: none;
@@ -152,6 +153,7 @@
 
 .c-stack-list {
   > h5 {
+    @include decoration-font;
     text-align: center;
     color: $label-text-color;
     font-size: 0.75rem;
@@ -198,7 +200,7 @@
 
       > span {
         margin: auto 1em auto 0.5em;
-        @include saira;
+        @include decoration-font;
       }
     }
   }

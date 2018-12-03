@@ -8,10 +8,10 @@
 @import "./forms";
 
 html {
-  @include saira;
+  @include body-font;
   color: $text-color;
   line-height: 1;
-  
+
   @include desktop {
     font-size: 16px;
     display: flex;
@@ -41,7 +41,7 @@ section {
 
   &:not(:last-of-type) {
     min-height: 100vh;
-}
+  }
 }
 
 .c-loading-icon {
@@ -52,7 +52,7 @@ section {
   margin: auto;
 
   &__label {
-    @include saira;
+    @include decoration-font;
     margin-top: 1em;
     display: inline-block;
   }
@@ -67,24 +67,24 @@ section {
     opacity: 0.5;
     animation: loading-tile $t ease-in-out 0s alternate infinite;
 
-    &:nth-child(1) { 
+    &:nth-child(1) {
       float: left;
       transform-origin: 75% 75%;
       border-radius: $border-radius 0 0;
-     }
-    &:nth-child(2) { 
+    }
+    &:nth-child(2) {
       float: right;
       transform-origin: 25% 75%;
       animation-delay: -1.5 * $t;
       border-radius: 0 $border-radius 0 0;
-     }
-    &:nth-child(4) { 
+    }
+    &:nth-child(4) {
       float: right;
       transform-origin: 25% 25%;
       animation-delay: -1 * $t;
       border-radius: 0 0 $border-radius 0;
-     }
-    &:nth-child(3) { 
+    }
+    &:nth-child(3) {
       float: left;
       transform-origin: 75% 25%;
       animation-delay: -0.5 * $t;
@@ -100,7 +100,7 @@ section {
 
 .copyright {
   display: block;
-  @include saira(0.7em);
+  @include decoration-font(0.7em);
   color: $complimentary-text-color;
   text-align: center;
 }
