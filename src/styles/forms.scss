@@ -9,44 +9,80 @@
 
   &__field {
     $input-margin-left: 0.3em;
-    $input-width: #{'calc(100% - ' $input-margin-left ')'};
+    $input-width--mobile: #{"calc(100% - " $input-margin-left ")"};
     $border: solid $border-color-gray 1px;
     $border-color--focus: $accent-color--light;
     margin-top: 1em;
 
-    > input {
-      border: none;
-      border-bottom: $border;
-      width: $input-width;
-      margin-left: $input-margin-left;
-      padding: 0.2em 0.5em;
-      box-sizing: border-box;
-      outline: none;
-      font-size: 0.9em;
-
-      &:active,
-      &:focus {
-        border-color: $border-color--focus;
-      }
+    @include min-tablet {
+      display: flex;
+      align-items: baseline;
+      justify-content: flex-end;
     }
 
     > label {
-      @include saira(0.9em);
-      display: inline-block;
+      @include decoration-font;
       color: $complimentary-text-color;
-      margin-bottom: 0.3em;
+
+      @include mobile {
+        font-size: 0.8rem;
+      }
+
+      @include min-tablet {
+        display: inline-block;
+        margin-right: 1rem;
+        text-align: right;
+        flex-shrink: 0;
+        width: 4rem;
+      }
+    }
+
+    & {
+      &--text {
+        > input {
+          border: none;
+          border-bottom: $border;
+          margin-left: $input-margin-left;
+          padding: 0.2rem 0.5rem;
+          box-sizing: border-box;
+          outline: none;
+
+          @include mobile {
+            width: $input-width--mobile;
+          }
+
+          @include min-tablet {
+            flex-grow: 1;
+          }
+
+          &:active,
+          &:focus {
+            border-color: $border-color--focus;
+          }
+        }
+      }
     }
 
     & {
       &--text-area {
+        @include min-tablet {
+          margin-top: 1.5rem;
+        }
+
         > textarea {
           border: $border;
-          margin-left: $input-margin-left;
-          width: $input-width;
-          padding: 0.5em 0.7em;
           box-sizing: border-box;
+          margin-left: $input-margin-left;
           outline: none;
-          font-size: 0.9em;
+          padding: 0.2rem 0.5rem;
+
+          @include mobile {
+            width: $input-width--mobile;
+          }
+
+          @include min-tablet {
+            flex-grow: 1;
+          }
 
           &:active,
           &:focus {
@@ -54,22 +90,35 @@
             outline: none;
           }
         }
+
+        > label {
+          display: inline-block;
+          margin-bottom: 0.25rem;
+        }
       }
     }
   }
 
   > button[type="submit"] {
-    align-self: flex-end;
-    border: solid $accent-color 1px;
-    color: $accent-color;
-    background: none;
+    @include decoration-font;
+    $button-transition: ease-in-out 100ms;
+    align-self: center;
+    border: solid $secondary-color 1px;
+    border-radius: 1rem;
+    color: $secondary-color;
+    cursor: pointer;
+    background-color: transparent;
     text-transform: uppercase;
-    font-size: 0.8em;
-    font-family: Saira;
-    margin: 1em 1em 0;
+    margin: 1.5rem 1rem 0;
     box-sizing: border-box;
-    padding: 0.4em 1.5em;
+    padding: 0.5em 1.5em 0.5em 2em;
     line-height: 1;
+    transition: $button-transition;
+    transition-property: background-color, color;
+
+    @include min-tablet {
+      margin-top: 1.75rem;
+    }
 
     > svg {
       display: inline-block;
@@ -79,18 +128,20 @@
 
       path {
         fill: none;
-        stroke: $accent-color;
+        stroke: $secondary-color;
+        transition: stroke $button-transition;
       }
     }
 
     &:active,
+    &:hover,
     &:focus {
-      color: $accent-color--light;
+      color: white;
       outline: none;
-      border-color: $accent-color--light;
+      background-color: $secondary-color;
 
       > svg path {
-        stroke: $accent-color--light;
+        stroke: white;
       }
     }
   }

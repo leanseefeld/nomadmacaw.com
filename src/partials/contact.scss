@@ -12,10 +12,24 @@
 }
 
 .l-contact {
-  padding: 50px 32px;
-
   &__list {
-    margin: 28px 0;
+    @include decoration-font;
+    padding: 0;
+    text-align: center;
+    margin: 3rem 0;
+    
+    @include min-desktop {
+      text-align: left;
+    }
+  }
+
+  @include min-desktop {
+    &__content {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      align-items: baseline;
+    }
   }
 
   &__item {
@@ -33,12 +47,33 @@
   }
 
   &__form {
-    padding: 1.8em 2em;
-
-    > p {
-      text-align: center;
-      margin: 0;
-      font-size: 0.9em;
+    @include mobile {
+      margin-top: 4rem;
+      padding: 1.5rem;
     }
+
+    @include min-tablet {
+      margin-top: 4rem;
+      padding: 3rem;
+      max-width: $panel__max-width--tablet;
+    }
+    
+    @include min-desktop {
+      margin: 4rem 3rem 3rem;
+    }
+
+    > .l-form {
+      @include mobile {
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+    }
+  }
+
+  &__form-message {
+    line-height: 1.25rem;
+    text-align: center;
+    margin: 0;
   }
 }
