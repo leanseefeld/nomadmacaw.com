@@ -1,7 +1,7 @@
 @import "./helpers/typography";
 @import "./helpers/vars";
 @import "./helpers/devices";
-@import url(https://fonts.googleapis.com/css?family=Poppins:300|Saira:400,500,700);
+@import url("https://fonts.googleapis.com/css?family=Poppins:300|Oxygen:300,700");
 
 h1,
 h2,
@@ -53,7 +53,7 @@ a {
   &--expand::after {
     margin-left: $icon-margin;
   }
-  
+
   &--collapse::after {
     margin-left: $icon-margin;
     transform: rotateZ(180deg);
@@ -67,5 +67,30 @@ a {
 
   @include min-tablet {
     max-width: 38rem;
+  }
+}
+
+.t-button {
+  @include decoration-font;
+  background: none;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  outline: none;
+  padding: 0.5em 1.25em;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &--white-transparent {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: solid white 1px;
+    color: white;
+
+    &:hover,
+    &:focus {
+      box-shadow: 0 0 0 1px white;
+      background-color: rgba(255, 255, 255, 0.2);
+    }
   }
 }

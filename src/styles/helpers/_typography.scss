@@ -1,4 +1,4 @@
-@mixin font-props ($font-size: null, $font-weight: null) {
+@mixin font-props($font-size: null, $font-weight: null) {
   @if $font-size {
     font-size: $font-size;
   }
@@ -7,22 +7,22 @@
   }
 }
 
-@mixin saira ($font-size: null, $font-weight: null) {
-  font-family: 'Saira', sans-serif;
-  @include font-props($font-size, $font-weight)
+@mixin oxygen($font-size: null, $font-weight: null) {
+  font-family: "Oxygen", sans-serif;
+  @include font-props($font-size, $font-weight);
 }
 
-@mixin poppins ($font-size: null, $font-weight: null) {
-  font-family: 'Poppins', sans-serif;
-  @include font-props($font-size, $font-weight)
+@mixin poppins($font-size: null, $font-weight: null) {
+  font-family: "Poppins", sans-serif;
+  @include font-props($font-size, $font-weight);
 }
 
-@mixin body-font ($font-size: null, $font-weight: null) {
+@mixin body-font($font-size: null, $font-weight: null) {
   @include poppins($font-size, $font-weight);
 }
 
-@mixin decoration-font ($font-size: null, $font-weight: null) {
-  @include saira($font-size, $font-weight);
+@mixin decoration-font($font-size: null, $font-weight: null) {
+  @include oxygen($font-size, $font-weight);
 }
 
 @mixin copy-text {

@@ -33,6 +33,12 @@ $desktop--large: 1280px;
   }
 }
 
+@mixin min-desktop--large {
+  @include breakpoint($desktop) {
+    @content;
+  }
+}
+
 @mixin breakpoint($start, $end: null) {
   $end-query: "";
   @if ($end) {
