@@ -8,30 +8,16 @@
         <%= contact.phone %>
       </li>
       <li class="l-contact__item l-contact__item--mail">
-        <%= contact.mail %>
+        <a href="mailto:<%= contact.mail %>">
+          <%= contact.mail %>
+        </a>
+      </li>
+      <li class="l-contact__item l-contact__item--linkedin">
+        <a href="<%= contact.linkedin %>">LinkedIn</a>
+      </li>
+      <li class="l-contact__item l-contact__item--github">
+        <a href="<%= contact.github %>">GitHub</a>
       </li>
     </ul>
-    <div class="l-contact__form l-panel ">
-      <p class="l-contact__form-message">
-        You can send me a message right now and I will get back to you as soon as possible.
-      </p>
-      <form class="l-form" action="<%- contact.post %>" method="post">
-        <div class="l-form__field l-form__field--text">
-          <label for="name">Name</label>
-          <input type="text" name="name" id="name" required>
-        </div>
-        <div class="l-form__field l-form__field--text">
-          <label for="email">Email</label>
-          <input type="text" name="email" id="email" required>
-        </div>
-        <div class="l-form__field l-form__field--text-area">
-          <label for="message">Message</label>
-          <textarea name="message" id="message" cols="30" rows="10" required></textarea>
-        </div>
-        <button type="submit">
-          <span>Send</span>${require(`!svg-inline-loader?removingTagAttrs=style!./images/send-arrow.svg`)}
-        </button>
-      </form>
-    </div>
   </div>
 </section>

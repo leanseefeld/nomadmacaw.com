@@ -95,14 +95,15 @@ section {
   padding: 2rem;
   background-color: $text-color;
   color: white;
+
+  > p {
+    display: block;
+    @include decoration-font(0.7em);
+    color: $complimentary-text-color;
+    text-align: center;
+  }
 }
 
-.copyright {
-  display: block;
-  @include decoration-font(0.7em);
-  color: $complimentary-text-color;
-  text-align: center;
-}
 
 @keyframes loading-tile {
   0% {
