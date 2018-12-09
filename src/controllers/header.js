@@ -1,34 +1,39 @@
 import $ from 'jquery'
-import { isMobile } from '../helpers/device'
-import debounce from 'lodash/debounce'
+import { isDesktop } from '../helpers/device'
+export const CLASS_HEADER = 'nm-header'
 
-export const className = 'nm-header'
+const CLASS_HEADER_OPEN = CLASS_HEADER + '--open'
+const CLASS_HEADER_COLLAPSED = CLASS_HEADER + '--collapsed'
+const CLASS_TITLE_ACTIVE = CLASS_HEADER + '__title--active'
+
+const ANIMATION_DURATION = 350
 
 export function getHeader () {
   return $('#header')
 }
 
 export function getTitleList () {
-  return getHeader().find(`.${className}__title-list`)
+  return getHeader().find(`.${CLASS_HEADER}__title-list`)
 }
 
 export function getHamburger () {
-  return getHeader().find(`.${className}__menu`)
+  return getHeader().find(`.${CLASS_HEADER}__menu`)
 }
 
 export function selectSection (elements) {
   return elements.find(el => el.tagName === 'SECTION')
 }
 
-const activeTitleClass = className + '__title--active'
-const openClass = className + '--open'
+export const DISPLAY = { INITIAL: 'INITIAL', COLLAPSED: 'COLLAPSED', OPEN: 'OPEN' }
 
 export default class HeaderController {
   constructor () {
-    this.scroll = {
-      prevX: 0,
-      prevY: 0
+    this.state = {
+      display: DISPLAY.INITIAL,
+      activeSection: null,
+      compactMode: !isDesktop()
     }
+    this.mount()
   }
 
   mount () {
@@ -36,114 +41,125 @@ export default class HeaderController {
     const elements = []
     headings.each((idx, el) => {
       const titleEl = document.createElement('div')
-      titleEl.className = className + '__title'
+      titleEl.className = CLASS_HEADER + '__title'
       titleEl.innerText = el.innerText
       const sectionId = titleEl.dataset.sectionId = el.parentElement.id
-      titleEl.onclick = () => this.scrollToSection(sectionId)
+      titleEl.onclick = this.scrollToSection.bind(this, sectionId)
       elements.push(titleEl)
     })
+    this.firstSection = 'home' // defined in template
 
     getTitleList().append(elements)
   }
 
   register () {
     const handler = this.onScroll.bind(this)
-    this.mount()
 
-    getHamburger().click(this.toggleMenu.bind(this))
-    getHeader().find(`.${className}__logo`).click(this.scrollToSection.bind(this, 'home'))
+    getHamburger().click(() => {
+      if (this.state.display !== DISPLAY.OPEN) {
+        this.setState({ display: DISPLAY.OPEN })
+      } else {
+        this.focusVisibleSection()
+      }
+    })
 
-    if (isMobile()) {
-      this.onScroll()
-      const onTransitionEnd = debounce((evt) => {
-        getHeader()[0].removeEventListener('transitionend', onTransitionEnd)
-        getTitleList()[0].removeEventListener('transitionend', onTransitionEnd)
+    getHeader().find(`.${CLASS_HEADER}__logo`).click(this.scrollToSection.bind(this, this.firstSection))
 
-        this.syncHeader(true)
-        window.addEventListener('scroll', handler, { passive: true })
-      }, 200)
-      getHeader()[0].addEventListener('transitionend', onTransitionEnd)
-      getTitleList()[0].addEventListener('transitionend', onTransitionEnd)
-    } else {
+    window.addEventListener('load', () => {
+      handler()
       window.addEventListener('scroll', handler, { passive: true })
-    }
+    })
+
+    window.addEventListener('resize', () => this.focusVisibleSection())
 
     return function unregister () {
       window.removeEventListener('scroll', handler)
     }
   }
 
-  isOpen () {
-    return getHeader().is('.' + openClass)
-  }
-
-  toggleMenu (open) {
-    if ((typeof open !== 'undefined' && !open) || this.isOpen()) {
-      getHeader().removeClass(openClass)
-      this.onScroll()
-    } else {
-      this.opaque()
-      this.collapse()
-      getHeader().addClass(openClass)
-    }
-  }
-
-  expand () {
-    getHeader().get(0).className = className
-  }
-
-  collapse () {
-    getHeader().addClass(className + '--collapsed')
-  }
-
-  opaque (add = true) {
-    const $className = className + '--opaque'
-    getHeader()[add ? 'addClass' : 'removeClass']($className)
-  }
-
-  update (pageHeight, scrollY) {
-    const tenth = pageHeight / 10
-    this.opaque(scrollY > (tenth * 2))
-    if (scrollY > tenth) {
-      this.collapse()
-    } else {
-      this.expand()
-    }
-  }
-
-  onScroll (evt, force) {
-    if (this.isOpen()) {
+  onScroll () {
+    if (this.scrolling || this.state.display === DISPLAY.OPEN) {
       return
     }
-    if (typeof evt === 'boolean' && typeof force === 'undefined') {
-      force = evt
-    }
-    this.update(window.innerHeight, window.scrollY)
-    if (isMobile()) {
-      this.syncHeader(force)
-    }
+    this.focusVisibleSection()
   }
 
-  syncHeader (force) {
-    const titleList = getTitleList()
-    const visibleTitle = titleList.find('.' + activeTitleClass)
+  focusVisibleSection () {
+    // TODO: compatibility with IE/Edge
     const middleSection = selectSection(document.elementsFromPoint(window.innerWidth / 2, window.innerHeight / 2 + 1))
-
-    if (!middleSection) return
-
-    if (force || middleSection.id !== visibleTitle.data('sectionId')) {
-      const target = titleList.find(`[data-section-id=${middleSection.id}]`)[0]
-      visibleTitle.removeClass(activeTitleClass)
-      target.classList.add(activeTitleClass)
-      titleList.animate({ scrollTop: target.offsetTop - target.offsetHeight / 2 }, 200)
+    if (!middleSection) {
+      return
     }
+    this.setActiveSection(middleSection.id)
+  }
+
+  setActiveSection (sectionId) {
+    this.setState({
+      activeSection: sectionId,
+      display: sectionId === this.firstSection ? DISPLAY.INITIAL : DISPLAY.COLLAPSED,
+      compactMode: !isDesktop()
+    })
   }
 
   scrollToSection (sectionId) {
-    this.toggleMenu(false)
     const anchor = document.getElementById(sectionId)
+    this.scrolling = true
+    this.setActiveSection(sectionId)
     $('html,body').animate({
       scrollTop: anchor.offsetTop
-    }, 200)
+    }, ANIMATION_DURATION, () => {
+      this.scrolling = false
+    })
+  }
+
+  setState (digest) {
+    const prevState = this.state
+    this.state = {
+      ...this.state,
+      ...digest
+    }
+    this.render(prevState, this.state)
+  }
+
+  render (prevState, state) {
+    const changedDisplay = prevState.display !== state.display
+    const changedSection = prevState.activeSection !== state.activeSection
+    const changedCompact = prevState.compactMode !== state.compactMode
+    let closedMenu = false
+
+    if (changedDisplay) {
+      this._renderDisplay(state.display)
+      closedMenu = prevState.display === DISPLAY.OPEN
+    }
+    if (changedSection || changedCompact || closedMenu) {
+      this._syncHeader(state.activeSection, state.compactMode)
+    }
+  }
+
+  _renderDisplay (display) {
+    let classList = [ CLASS_HEADER ]
+    if (display === DISPLAY.OPEN) {
+      classList.push(CLASS_HEADER_OPEN)
+      getTitleList()[0].style.transform = ''
+    } else if (display === DISPLAY.COLLAPSED) {
+      classList.push(CLASS_HEADER_COLLAPSED)
+    }
+
+    getHeader()[0].className = classList.join(' ')
+  }
+
+  _syncHeader (sectionId, isCompact) {
+    const titleList = getTitleList()
+    const visibleTitle = titleList.find('.' + CLASS_TITLE_ACTIVE)
+    visibleTitle.removeClass(CLASS_TITLE_ACTIVE)
+    const target = titleList.find(`[data-section-id=${sectionId}]`)[0]
+    target.classList.add(CLASS_TITLE_ACTIVE)
+
+    if (isCompact) {
+      const offset = titleList[0].offsetHeight / 2 - (target.offsetTop + target.offsetHeight / 2)
+      titleList[0].style.transform = `translateY(${offset}px)`
+    } else {
+      titleList[0].style.transform = ''
+    }
   }
 }

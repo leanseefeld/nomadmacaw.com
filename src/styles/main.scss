@@ -24,7 +24,7 @@ section {
 
 .l-main {
   @include mobile {
-    padding: 5rem $section__horizontal-padding--mobile 3rem;
+    padding: 5rem $section__horizontal-padding--mobile $content__padding;
   }
 
   @include min-tablet {
@@ -34,11 +34,10 @@ section {
 
 .l-content-wrapper {
   margin: 0 auto;
-  width: calc(100vw - 6rem);
-  padding: 0 3rem;
+  padding: 0 $content__padding;
 
   @include min-desktop--large {
-    max-width: $content__max-width--desktop - 6rem;
+    max-width: $content__max-width--desktop - $content__padding * 2;
   }
 }
 
@@ -94,6 +93,8 @@ section {
 .l-footer {
   margin-top: 2rem;
   padding: 2rem;
+  background-color: $text-color;
+  color: white;
 }
 
 .copyright {

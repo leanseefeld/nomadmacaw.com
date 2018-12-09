@@ -5,231 +5,259 @@
 
 .nm-header {
   $top: &;
-  $transition: ease-in-out 0.3s;
-  $padding: 2rem;
-  $icon-height--mobile: 1.2rem;
-  $icon-top--mobile: 2.75rem / 2 - 0.5rem;
-  $height--mobile: 2.75rem;
-  width: 100%;
-  position: fixed;
-  z-index: 10;
+  $transition--mobile: ease-in-out 350ms;
+  $logo__width--mobile: 6.1rem;
+  background-color: white;
+  box-shadow: 0 2px 4px $shadow-color;
   box-sizing: border-box;
-  transition: $transition;
-  transition-property: padding, background-color, height;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
 
-  @include mobile {
-    height: $height--mobile;
-    padding: $padding;
+  @mixin header-transition--desktop {
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
   }
 
-  @include min-tablet {
-    padding: 0 2.5rem;
+  > .l-content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+
+    @include max-tablet {
+      overflow: hidden;
+      transition: height $transition--mobile;
+    }
+
+    @include min-desktop {
+      @include header-transition--desktop;
+    }
+  }
+
+  &__logo-wrapper {
+    transition: transform $transition--mobile;
+    transform-origin: left;
+
+    @include max-tablet {
+      width: 3rem;
+    }
+
+    @include min-desktop {
+      @include header-transition--desktop;
+    }
   }
 
   &__logo {
     cursor: pointer;
-    position: absolute;
     overflow: hidden;
-    transform-origin: left top;
-    transition: $transition;
-    transition-property: transform, width;
+    transition-property: width, opacity, height;
 
-    @include mobile {
-      top: $icon-top--mobile;
-      height: $icon-height--mobile;
-      transform: scale(2.5) translate(2.3em, 2em);
+    @include max-tablet {
+      transition: $transition--mobile;
+      width: $logo__width--mobile;
+      height: 1.5rem;
     }
 
-    @include min-tablet {
-      height: 1.4em;
-      margin: 0.5rem 0;
-      transform: scale(3) translate(58%, 160%);
+    @include min-desktop {
+      @include header-transition--desktop;
+      opacity: 0.7;
+      height: 2rem;
+
+      &:hover,
+      &:focus {
+        opacity: 1;
+      }
     }
 
     > svg {
       height: 100%;
-      transition: width $transition;
+      transition: width $transition--mobile;
+
+      @include min-desktop {
+        @include header-transition--desktop;
+      }
     }
 
     #logo {
-      fill: #fff;
-      transition: fill $transition;
+      transition: fill $transition--mobile;
+
+      @include min-desktop {
+        @include header-transition--desktop;
+      }
     }
 
     #text {
-      transition: $transition;
+      transition: $transition--mobile;
       transition-property: fill, opacity;
-      fill: #fff;
     }
   }
 
   &__title-list {
-    overflow: hidden;
-    transition: $transition;
-    color: #fff;
-    position: relative;
-
-    @include mobile {
-      height: $height--mobile;
-      @include saira(1.25rem);
+    @include max-tablet {
+      transition: $transition--mobile;
+      font-size: 1.25rem;
+      font-weight: 700;
       transition-property: color, opacity, transform;
       text-align: center;
       opacity: 0;
+      position: relative;
     }
 
-    @include min-tablet {
-      @include saira(0.9em);
+    @include min-desktop {
+      @include header-transition--desktop;
       height: initial;
       text-align: right;
       transition-property: color;
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+      flex: 0 1 calc(100vw - #{$content__padding * 2 + $logo__width--mobile});
+      max-width: 30rem;
+      margin-left: 0.5rem;
     }
   }
 
   &__title {
     cursor: pointer;
-    opacity: 0.6;
-    transition: ease-out 0.2s;
-    transition-property: opacity, margin;
-    margin-bottom: 1em;
+
+    @include max-tablet {
+      transition: margin $transition--mobile;
+      margin-bottom: 1em;
+    }
 
     &--active {
       opacity: 1;
     }
 
-    @include min-tablet {
-      opacity: 1;
+    @include min-desktop {
+      @include header-transition--desktop;
       display: inline-block;
-      margin-bottom: 1rem;
-      margin-top: 1rem;
+      opacity: 1;
+      padding: 0 0.25rem;
+      transition-property: box-shadow;
 
-      & + & {
-        margin-left: 1.5rem;
+      &:first-of-type {
+        display: none;
+      }
+
+      &:not(&--active) {
+        &:hover,
+        &:focus {
+          box-shadow: 0 2px transparentize($text-color, 0.5);
+        }
+      }
+
+      &--active {
+        box-shadow: 0 3px $text-color;
       }
     }
   }
 
   &__menu {
-    @include min-tablet {
+    @include min-desktop {
       display: none;
     }
 
-    @include mobile {
+    @include max-tablet {
       width: 1.5rem;
-      top: $icon-top--mobile;
-      height: $icon-height--mobile;
-      position: absolute;
-      right: $padding;
-      transition: ease-in-out 0.2s;
-      transition-property: transform, top;
-      transform-origin: top right;
+      transition: $transition--mobile;
+      transition-property: transform, opacity;
+      transform-origin: right center;
 
       #hamburger {
-        > path {
-          fill: none;
-          stroke: #fff;
-          stroke-width: 0.48px;
-          transition: ease-in-out 0.2s;
-          transition-property: stroke, transform;
+        > rect {
+          fill: $text-color;
+          transition: $transition--mobile;
+          transition-property: transform, opacity;
         }
 
-        #top {
-          transform-origin: right;
-        }
-
-        #middle {
-          transform-origin: 0.35em center;
-        }
-
+        #top,
         #bottom {
-          transform-origin: center right;
+          transform-origin: center;
         }
       }
     }
   }
 
   &--collapsed {
-    @include mobile {
-      padding: 0 $padding;
+    > .l-content-wrapper {
+      height: 2.5rem;
     }
 
     #{$top} {
-      &__logo {
-        transform: none;
+      @include max-tablet {
+        &__logo {
+          width: 3rem;
 
-        @include mobile {
           #text {
             opacity: 0;
           }
         }
-      }
 
-      @include mobile {
+        &__logo,
         &__menu {
-          top: 1em;
+          opacity: 0.5;
         }
-      }
-
-      @include min-tablet {
-        &__title {
-          margin-bottom: 0.7rem;
-          margin-top: 0.7rem;
-        }
-      }
-    }
-  }
-
-  &--opaque {
-    background-color: $primary-color;
-
-    @include mobile {
-      #{$top} {
         &__title-list {
           opacity: 1;
         }
       }
+
+      @include min-desktop {
+        &__logo {
+          height: 1.5rem;
+        }
+      }
     }
   }
 
-  @include mobile {
+  @include max-tablet {
     &--open {
-      height: 100vh;
+      > .l-content-wrapper {
+        height: 100vh;
+      }
 
       #{$top} {
+        &__logo-wrapper,
+        &__menu {
+          transform: translateY(calc(-50vh + 3rem + 100%)) scale(1.5);
+        }
+
+        &__logo,
+        &__menu {
+          opacity: 0.5;
+        }
+
         &__logo {
-          transform: scale(2) translate(4.2em, 4.5em);
+          width: $logo__width--mobile;
         }
 
         &__menu {
-          transform: scale(2) translateY(1em);
-
           #top {
-            transform: rotateZ(-45deg) translate(0.075em) scale(0.9);
+            transform: translate(10%, 10.5%) rotateZ(-45deg) scaleY(0.5);
           }
 
           #middle {
-            transform: scale(0) translate(-0.7em);
+            transform: translateX(25%) scaleX(0.5);
+            opacity: 0;
           }
 
           #bottom {
-            transform: rotateZ(45deg) translate(0.07em, 0.013em) scale(0.9);
+            transform: translate(10%, -10.5%) rotateZ(45deg) scaleY(0.5);
           }
         }
 
         &__title-list {
-          height: 100vh;
-          transform: translateY(30vh);
-        }
-
-        &__title--active {
           opacity: 1;
-          font-size: 1.2em;
+          transform: scale(1.25);
         }
       }
     }
   }
 }
 
-@include mobile {
+@include max-tablet {
   section > h2 {
     display: none;
   }

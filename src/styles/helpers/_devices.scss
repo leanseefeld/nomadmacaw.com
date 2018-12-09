@@ -21,6 +21,12 @@ $desktop--large: 1280px;
   }
 }
 
+@mixin max-tablet {
+  @media screen and (max-width: $tablet) {
+    @content;
+  }
+}
+
 @mixin desktop {
   @include breakpoint($tablet, $desktop) {
     @content;
