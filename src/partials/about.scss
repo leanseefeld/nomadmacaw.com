@@ -38,48 +38,31 @@
   .avatar {
     border-radius: 50%;
     overflow: hidden;
-    border: 4px solid #ccc;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.25);
     margin: 0 auto;
-    box-sizing: border-box;
     
     > img {
       height: 100%;
     }
     
     @include mobile {
-      $size: 8rem;
+      $size: 50vw;
       height: $size;
       width: $size;
     }
     
-    @include tablet {
-      $size: 10rem;
+    @include min-tablet {
+      $size: 12rem;
       height: $size;
       width: $size;
-      border-width: 6px;
-    }
-    
-    @include min-desktop {
-      $size: 11rem;
-      height: $size;
-      width: $size;
-      border-width: 6px;
     }
   }
 
   &__name {
-    @include decoration-font;
-    font-weight: 500;
-    margin: 1rem 0;
+    margin: 2rem 0;
     text-align: center;
-    
-    @include mobile {
-      font-size: 1.25rem;
-    }
-    
-    @include min-tablet {
-      font-size: 1.5rem;
-    }
+    font-size: 1.5rem;
+    font-weight: 700;
   }
 
   .brief {

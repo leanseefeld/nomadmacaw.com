@@ -122,7 +122,7 @@
   }
 
   &__job-title {
-    font-weight: 500;
+    font-weight: 700;
 
     @include min-tablet {
       font-size: 1.25rem;
@@ -201,6 +201,7 @@
   &__label {
     @include decoration-font;
     color: $label-text-color;
+    font-weight: 700;
     text-align: center;
 
     @include mobile {

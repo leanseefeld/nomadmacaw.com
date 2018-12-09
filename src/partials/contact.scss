@@ -53,7 +53,7 @@
     }
 
     @include min-tablet {
-      margin-top: 4rem;
+      margin: 4rem auto auto;
       padding: 3rem;
       max-width: $panel__max-width--tablet;
     }

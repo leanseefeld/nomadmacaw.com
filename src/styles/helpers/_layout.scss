@@ -2,6 +2,7 @@
 
 @mixin panel ($p-shadow-color: $shadow-color) {
   box-sizing: border-box;
+  border-radius: 0.5rem;
   
   @include mobile {
     box-shadow: 0 2px 1em $p-shadow-color;

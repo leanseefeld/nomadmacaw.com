@@ -126,7 +126,7 @@ export default class ExperienceController extends AbstractLoaderController {
       experience = this.content.element.querySelector(`[data-company-id="${experience}"]`)
     }
     const experienceBcr = experience.getBoundingClientRect()
-    const offset = experienceBcr.x + (experienceBcr.width / 2) - (window.innerWidth / 2)
+    const offset = experienceBcr.left + (experienceBcr.width / 2) - (window.innerWidth / 2)
     const x = this.content.$transform.x
     if (animate) {
       animateValue(200, x, x - offset, this.setExperiencesPosition.bind(this))
@@ -236,8 +236,8 @@ export class ScrollableContainer {
   computeElementPosition (element) {
     const bcr = element.getBoundingClientRect()
     return {
-      left: bcr.x * 100 / window.innerWidth,
-      right: (bcr.x + bcr.width) * 100 / window.innerWidth
+      left: bcr.left * 100 / window.innerWidth,
+      right: (bcr.left + bcr.width) * 100 / window.innerWidth
     }
   }
 
@@ -245,7 +245,8 @@ export class ScrollableContainer {
     const x = this.$transform.x
     this.element.style.transform = `translateX(${x}px)`
     if (this.applyTransition) {
-      for (let element of this.element.children) {
+      for (let i = 0; i < this.element.childElementCount; i++) {
+        let element = this.element.children.item(i)
         if (element.getAttribute('nm-ignore-animation') === null) {
           this.applyTransition(element, this.computeElementPosition(element))
         }
