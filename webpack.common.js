@@ -3,6 +3,7 @@ const data = require('./static/data')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
   entry: [
@@ -19,10 +20,10 @@ module.exports = {
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
       {
         test: /\.(scss|sass)$/,
-        exclude: /node_modules/,
         loader: [
           process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
           'css-loader',
+          'postcss-loader', // TODO: prod only
           'sass-loader'
         ]
       }, {
@@ -31,7 +32,7 @@ module.exports = {
         loader: 'ejs-compiled-loader'
       }, {
         test: /\.ejs$/,
-        exclude: /node_modules|-template\.ejs/,
+        exclude: /node_modules|-template\.ejs|index\.ejs/,
         use: [
           'html-loader?interpolate=true',
           {
@@ -45,7 +46,15 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      template: './src/index.ejs'
+      template: './src/index.ejs',
+      inject: false,
+      title: 'Nomad Macaw | web design and development',
+      mobile: true,
+      lang: 'en'
+    }),
+    new FaviconsWebpackPlugin({
+      logo: './static/favicon.png',
+      persistentCache: true
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
