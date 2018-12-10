@@ -6,6 +6,8 @@ import AboutController from './controllers/about'
 import ExperienceController from './controllers/experience'
 import TestimonialsController from './controllers/testimonials'
 
+import './styles/main.scss'
+
 new HeaderController().register()
 new ServicesController().register()
 const aboutController = new AboutController()

@@ -7,12 +7,11 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
   entry: [
-    './src/styles/main.scss',
     './src/index.js'
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle-[hash].js'
   },
   module: {
     rules: [
@@ -57,7 +56,7 @@ module.exports = {
       persistentCache: true
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].css'
+      filename: '[name]-[hash].css'
     })
   ]
 }
