@@ -15,7 +15,19 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /.(png|jpe?g|svg)$/, exclude: /node_modules/, loader: 'file-loader' },
+      {
+        test: /.(png|jpe?g|svg)$/,
+        exclude: /node_modules/,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              bypassOnDebug: true
+            }
+          }
+        ]
+      },
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
       {
         test: /\.(scss|sass)$/,
