@@ -46,7 +46,18 @@ htmlWebpackPlugin.options.scripts = htmlWebpackPlugin.options.scripts || []
       } else { %>
     <link href="<%= htmlWebpackPlugin.files.css[key] %>" rel="stylesheet" /><%
       } %><%
-    } %><%
+    } %>
+    
+    <%
+    if (htmlWebpackPlugin.files.extracted && htmlWebpackPlugin.files.extracted.css) { 
+        for (key in htmlWebpackPlugin.files.extracted.css) {
+          var css = htmlWebpackPlugin.files.extracted.css[key] %>
+    <link rel="stylesheet" href="<%= css.file %>" media="<%= css.query %>"/>
+    <%
+      }
+    } %>
+    
+    <%
     if (htmlWebpackPlugin.options.headHtmlSnippet) { %>
     <%= htmlWebpackPlugin.options.headHtmlSnippet %><%
     } %>

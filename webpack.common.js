@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const MediaQueryPlugin = require('media-query-plugin')
 
 module.exports = {
   entry: [
@@ -12,17 +13,18 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: '[name]-bundle.js'
   },
   module: {
     rules: [
       { test: /.(png|jpe?g|svg)$/, exclude: /node_modules/, loader: 'file-loader' },
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
       {
-        test: /\.(scss|sass)$/,
+        test: /\.(scss|sass|css)$/,
         loader: [
-          process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
+          MediaQueryPlugin.loader,
           'postcss-loader', // TODO: prod only
           'sass-loader'
         ]
@@ -58,6 +60,17 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
+    }),
+    new MediaQueryPlugin({
+      include: true,
+      queries: {
+        // 'screen and (max-width:768px)': 'mobile',
+        'screen and (max-width:426px)': 'mobile',
+        // 'screen and (min-width:427px)': 'desktop',
+        // 'screen and (max-width:768px) and (min-width:427px)': 'tablet',
+        'screen and (min-width:769px)': 'desktop',
+        'screen and (min-width:1025px)': 'desktop'
+      }
     })
   ]
 }
