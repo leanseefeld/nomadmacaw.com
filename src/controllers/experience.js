@@ -108,7 +108,8 @@ export default class ExperienceController extends AbstractLoaderController {
       this.slideToExperience(domUtils.childAtOrBeforeX(this.content.element, window.innerWidth / 2), false)
     }
     window.addEventListener('resize', onResize)
-    onResize()
+    this.configurePaginator()
+    this.slideToExperience(this.content.element.firstElementChild)
   }
 
   slideExperiencesBy (deltaX) {
