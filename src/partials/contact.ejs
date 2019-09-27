@@ -4,9 +4,11 @@
     to see what I can do for you!</p>
   <div class="l-contact__content">
     <ul class="l-contact__list">
-      <li class="l-contact__item l-contact__item--phone">
-        <%= contact.phone %>
-      </li>
+      <% if(contact.phone) { %>
+        <li class="l-contact__item l-contact__item--phone">
+          <%= contact.phone %>
+        </li>
+      <% } %>
       <li class="l-contact__item l-contact__item--mail">
         <a href="mailto:<%= contact.mail %>">
           <%= contact.mail %>
