@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: [
@@ -56,12 +57,19 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
+    new CopyPlugin([
+      { from: './static' }
+    ]),
     new HtmlWebpackPlugin({
       template: './src/index.ejs',
       inject: false,
       title: 'Nomad Macaw | web design and development',
       mobile: true,
-      lang: 'en'
+      lang: 'en',
+      googleAnalytics: {
+        trackingId: 'UA-102158125-2',
+        pageViewOnLoad: true
+      }
     }),
     new FaviconsWebpackPlugin({
       logo: './static/favicon.png',
