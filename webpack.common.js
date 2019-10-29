@@ -72,7 +72,11 @@ module.exports = {
       googleAnalytics: {
         trackingId: 'UA-102158125-2',
         pageViewOnLoad: true
-      }
+      },
+      meta: [{
+        name: 'description',
+        content: 'web design and web development - from elegant React websites to fully featured NodeJS web services to automate your business.'
+      }]
     }),
     new FaviconsWebpackPlugin({
       logo: './static/favicon.png',
