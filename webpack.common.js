@@ -66,6 +66,9 @@ module.exports = {
       title: 'Nomad Macaw | web design and development',
       mobile: true,
       lang: 'en',
+      gtm: {
+        trackingId: 'GTM-M7R24QT'
+      },
       googleAnalytics: {
         trackingId: 'UA-102158125-2',
         pageViewOnLoad: true
