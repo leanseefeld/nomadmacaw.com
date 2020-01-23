@@ -1,17 +1,17 @@
 {
   "about": [
-    "Hi there, I am Leander. I have been working with web development for over six years, developing intuitive solutions that last long and are easy to extend.",
+    "Hi there, I am Leander. I have been working with web development for over seven years, developing intuitive solutions that last long and are easy to extend.",
     "",
     "I believe that focusing on your goals and hearing what you have to say is key to a successful partnership. So is flexibility to go the extra mile.",
     "After all, you are unique - just like your projects.",
     "",
-    "Born in Brazil and exported to the world, ever since school I have enjoyed resolving problems in creative ways. Exploring new ideas and places",
+    "I was born in Brazil but have since already traveled around the globe, never missing the chance to learn something new.",
+    "Ever since school I have enjoyed solving problems in creative ways. Exploring new ideas and places",
     "keeps me going, as by doing so I always find new inspirations in nature and in people. This is what I try to bring to my work.",
     "",
     "It's with inspiration, passion and technical expertise that I hope to make your digital presence a truly remarkable one.",
     "",
-    "\nBest regards,",
-    "\nLeander Seefeld"
+    "Let's get started!"
   ],
   "experiences": [{
     "id": "stuff",
@@ -121,7 +121,7 @@
     "message": "Leander is a very commited and very smart professional. He always gave his best to solve the problems and he is always concerned with the quality and performance of the code.\nLeander learns fast and has a brilliant career ahead."
   }],
   "contact": {
-    "phone": "",
+    "phone": "+55 47 99283 8693",
     "mail": "leander@nomadmacaw.com",
     "post": "/todo-mail",
     "linkedin": "https://linkedin.com/in/leanseefeld",
