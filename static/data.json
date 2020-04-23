@@ -14,6 +14,41 @@
     "Let's get started!"
   ],
   "experiences": [{
+    "id": "integritas",
+    "company": {
+      "name": "Integritas",
+      "location": "Remote",
+      "logo": "integritas-logo.png"
+    },
+    "start": "Feb 2020",
+    "end": "current",
+    "title": "Software Engineer",
+    "summary": [
+      "Working for an outsourcing company, I already had the chance to help two clients from very distinct industries: energy and banking.",
+      "",
+      "The first client required expertise in the React ecosystem to expand and improve their data visualization platform, with a focus on performance due to the huge amount of data.",
+      "",
+      "The second one benefits from my JavaScript and Java skills to develop new services using Temenos’ Kony platform."
+    ]
+  }, {
+    "id": "nomadmacaw",
+    "company": {
+      "name": "Nomad Macaw",
+      "location": "Remote",
+      "logo": "nomadmacaw-logo.png"
+    },
+    "start": "August 2019",
+    "end": "February 2020",
+    "title": "Freelancer",
+    "summary": [
+      "Worked on smaller projects which were a match with skills I was improving - namely, UI and UX design, - or I just felt like working.",
+      "",
+      "Projects:",
+      "- Brand identity, logo and website design and implementation for a car repair shop, using Affinity - Designer, React and Node;",
+      "- Node and JavaScript pro bono consulting for a company seeking to build their own e-learning platform;",
+      "- General systems design pro bono consultancy for a community of readers and writers, including innovative storyline tools."
+    ]
+  },{
     "id": "stuff",
     "company": {
       "name": "Stuff",
