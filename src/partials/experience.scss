@@ -170,13 +170,9 @@
 
     ul {
       padding: 0 0 0 2rem;
-      list-style-type: none;
 
       > li {
-        &:before {
-          content: "-";
-          margin-left: -0.5em;
-        }
+        margin: .25em 0;
       }
     }
 
