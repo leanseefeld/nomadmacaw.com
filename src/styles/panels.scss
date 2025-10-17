@@ -1,6 +1,6 @@
-@import "./helpers/layout";
+@use "./helpers/layout" as layout;
 
 .l-panel {
-  @include panel;
+  @include layout.panel;
   width: 100%;
 }

@@ -1,11 +1,11 @@
-@import "./helpers/typography";
-@import "./helpers/vars";
-@import "./helpers/devices";
+@use "./helpers/typography" as typography;
+@use "./helpers/vars" as vars;
+@use "./helpers/devices" as devices;
 @import url("https://fonts.googleapis.com/css?family=Poppins:300|Oxygen:300,700");
 
 h1,
 h2 {
-  @include decoration-font;
+  @include typography.decoration-font;
 }
 
 h1 {
@@ -24,7 +24,7 @@ h2 {
 
 a {
   text-decoration: underline;
-  color: $complimentary-text-color;
+  color: vars.$complimentary-text-color;
 }
 
 .arrow-link {
@@ -53,17 +53,17 @@ a {
 }
 
 .t-section-caption {
-  @include copy-text;
+  @include typography.copy-text;
   text-align: center;
   margin: auto;
 
-  @include min-tablet {
+  @include devices.min-tablet {
     max-width: 38rem;
   }
 }
 
 .t-button {
-  @include decoration-font;
+  @include typography.decoration-font;
   background: none;
   border-radius: 0;
   border: none;

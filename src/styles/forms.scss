@@ -1,34 +1,35 @@
-@import "./helpers/typography";
-@import "./helpers/vars";
+@use "./helpers/typography" as typography;
+@use "./helpers/vars" as vars;
+@use "./helpers/devices" as devices;
 
 .l-form {
   display: flex;
   flex-direction: column;
-  $accent-color: $primary-color;
-  $accent-color--light: $primary-color--light;
+  $accent-color: vars.$primary-color;
+  $accent-color--light: vars.$primary-color--light;
 
   &__field {
     $input-margin-left: 0.3em;
     $input-width--mobile: #{"calc(100% - " $input-margin-left ")"};
-    $border: solid $border-color-gray 1px;
+    $border: solid vars.$border-color-gray 1px;
     $border-color--focus: $accent-color--light;
     margin-top: 1em;
 
-    @include min-tablet {
+    @include devices.min-tablet {
       display: flex;
       align-items: baseline;
       justify-content: flex-end;
     }
 
     > label {
-      @include decoration-font;
-      color: $complimentary-text-color;
+      @include typography.decoration-font;
+      color: vars.$complimentary-text-color;
 
-      @include mobile {
+      @include devices.mobile {
         font-size: 0.8rem;
       }
 
-      @include min-tablet {
+      @include devices.min-tablet {
         display: inline-block;
         margin-right: 1rem;
         text-align: right;
@@ -47,11 +48,11 @@
           box-sizing: border-box;
           outline: none;
 
-          @include mobile {
+          @include devices.mobile {
             width: $input-width--mobile;
           }
 
-          @include min-tablet {
+          @include devices.min-tablet {
             flex-grow: 1;
           }
 
@@ -65,7 +66,7 @@
 
     & {
       &--text-area {
-        @include min-tablet {
+        @include devices.min-tablet {
           margin-top: 1.5rem;
         }
 
@@ -76,11 +77,11 @@
           outline: none;
           padding: 0.2rem 0.5rem;
 
-          @include mobile {
+          @include devices.mobile {
             width: $input-width--mobile;
           }
 
-          @include min-tablet {
+          @include devices.min-tablet {
             flex-grow: 1;
           }
 
@@ -100,12 +101,12 @@
   }
 
   > button[type="submit"] {
-    @include decoration-font;
+    @include typography.decoration-font;
     $button-transition: ease-in-out 100ms;
     align-self: center;
-    border: solid $secondary-color 1px;
+    border: solid vars.$secondary-color 1px;
     border-radius: 1rem;
-    color: $secondary-color;
+    color: vars.$secondary-color;
     cursor: pointer;
     background-color: transparent;
     text-transform: uppercase;
@@ -116,7 +117,7 @@
     transition: $button-transition;
     transition-property: background-color, color;
 
-    @include min-tablet {
+    @include devices.min-tablet {
       margin-top: 1.75rem;
     }
 
@@ -128,7 +129,7 @@
 
       path {
         fill: none;
-        stroke: $secondary-color;
+        stroke: vars.$secondary-color;
         transition: stroke $button-transition;
       }
     }
@@ -138,7 +139,7 @@
     &:focus {
       color: white;
       outline: none;
-      background-color: $secondary-color;
+      background-color: vars.$secondary-color;
 
       > svg path {
         stroke: white;

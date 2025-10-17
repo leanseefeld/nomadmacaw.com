@@ -1,20 +1,21 @@
-@import "./vars";
+@use "./vars" as vars;
+@use "./devices" as devices;
 
-@mixin panel ($p-shadow-color: $shadow-color) {
+@mixin panel ($p-shadow-color: vars.$shadow-color) {
   box-sizing: border-box;
   border-radius: 0.5rem;
   
-  @include mobile {
+  @include devices.mobile {
     box-shadow: 0 2px 1em $p-shadow-color;
   }
 
-  @include tablet {
-    max-width: $panel__max-width--tablet;
+  @include devices.tablet {
+    max-width: vars.$panel__max-width--tablet;
     box-shadow: 0 0.5rem 2rem $p-shadow-color;
   }
   
-  @include min-desktop {
-    max-width: $panel__max-width--desktop;
+  @include devices.min-desktop {
+    max-width: vars.$panel__max-width--desktop;
     box-shadow: 0 0.5rem 2rem $p-shadow-color;
   }
 }
