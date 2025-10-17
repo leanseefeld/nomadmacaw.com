@@ -14,21 +14,48 @@
     "Let's get started!"
   ],
   "experiences": [{
-    "id": "integritas",
+    "id": "ambush",
     "company": {
-      "name": "Integritas",
+      "name": "Ambush",
       "location": "Remote",
-      "logo": "integritas-logo.png"
+      "logo": "ambush-logo.svg"
     },
-    "start": "Feb 2020",
+    "start": "September 2024",
     "end": "current",
     "title": "Software Engineer",
     "summary": [
-      "Working for an outsourcing company, I already had the chance to help two clients from very distinct industries: energy and banking.",
+      "Contracted to work with one of the largest payments companies in the world, contributing to a high-scale, multi-team environment with a strong",
+      " focus on performance, experimentation, and reliability, where small changes are often measured in the thousands or millions of dollars in revenue.",
       "",
-      "The first client required expertise in the React ecosystem to expand and improve their data visualization platform, with a focus on performance due to the huge amount of data.",
+      "Key responsibilities:",
+      "- Develop and maintain customer facing features across a complex microservices architecture using TypeScript, Next.js, GraphQL, and tRPC.",
+      "- Participate in A/B testing initiatives and write end-to-end tests with Playwright to support data-driven decision-making.",
+      "- Investigate and fix bugs, perform code reviews, and contribute to implementation discussions.",
+      "- Take part in agile ceremonies including sprint planning, grooming, daily stand-ups, and retrospectives."
+    ]
+  }, {
+    "id": "treez",
+    "company": {
+      "name": "Treez",
+      "location": "Remote",
+      "logo": "treez-logo.png"
+    },
+    "start": "May 2020",
+    "end": "May 2023",
+    "title": "Lead Software Engineer",
+    "summary": [
+      "Initially hired as an outsourced engineer via Truelogic, I was promoted to staff team lead due to my contributions and critical thinking,",
+      " ranging from bug fixes, to new features, to leading a team during a crucial architecture migration and preparation for SOC2 certification.",
+      " This meant maintaining good rapport with several interdependent engineering and non-engineering teams, writing Technical Design Documents,",
+      " making architectural decisions, reviewing a constant flow of pull requests, pair programming and reporting to senior leadership.",
       "",
-      "The second one benefits from my JavaScript and Java skills to develop new services using Temenos’ Kony platform."
+      "I led an international team (India, Brazil, US) in integrating legacy Java services with new TypeScript SaaS solutions. I mentored the team in best",
+      " practices, including code reusability, performance, error recovery, scalability, data consistency, user-centric design, and security. My responsibilities",
+      " also included managing user stories, grooming, sprint planning, and retrospectives, as well as actively getting involved in testing, validating, and",
+      " operationalizing new systems. I also interviewed candidates on React and Java skills.",
+      "",
+      "I implemented AWS EventBridge and Event Driven Design, and developed monitoring solutions using Grafana and Elastic APM. My technical stack included",
+      " Java, React, Node, TypeScript, and AWS."
     ]
   }, {
     "id": "nomadmacaw",
